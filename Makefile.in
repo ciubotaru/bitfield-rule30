@@ -36,7 +36,7 @@ bitfield:
 	$(MAKE) -C bitfield clean; \
 	cd bitfield; \
 	./configure --prefix=$(DESTDIR); \
-	$(MAKE) -C bitfield all; \
+	$(MAKE); \
 	else echo 'Using systemwide bitfield.'; fi
 
 shared: rule30.c

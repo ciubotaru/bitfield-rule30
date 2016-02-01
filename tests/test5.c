@@ -20,9 +20,8 @@ int main()
 	srand((unsigned)time(NULL));
 	int i, j, k;		//counters
 	int len = 80;
-	char *errmsg;
-	int result_char;
 	int result;
+	int result_char;
 	char *msg = "Testing rule30_ringify()";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
@@ -59,7 +58,7 @@ int main()
 			}
 //                      printf("Char comparison result: %i\n", result_char);
 			struct bitfield *output = bfnew_quick(len - j);
-			result = rule30_ringify(input, output, &errmsg);
+			result = rule30_ringify(input, output, NULL);
 			bfdel(output);
 //                      printf("rule30_ringify result: %i\n", result);
 			if (result_char != result) {
