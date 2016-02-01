@@ -86,6 +86,12 @@ struct parents *rule30_rev_bit(const int input)
 
 struct parents *rule30_rev_string(const struct bitfield *input)
 {
+	/**
+	 * A string is always Rule30-wise reversible.
+	 * There are always 4 strings of length n+2
+	 * that generate a particular string length n
+	 */
+
 	int size = bfsize(input);
 	int i, j, k, l;		//counters
 	int t_l;		// counter for matches
@@ -172,17 +178,13 @@ int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 	/* the resulting ring can not be longer than the input string */
 	else if (diff_bits < 0) {
 		msg = "Input too short";
-		*errmsg = malloc(strlen(msg) + 1);
-		memcpy(*errmsg, msg, strlen(msg) + 1);
-		return 1;
+		goto error;
 	}
 
 	/* multiple overlaps are not implemented */
 	else if (output_size < diff_bits) {
 		msg = "Input too long";
-		*errmsg = malloc(strlen(msg) + 1);
-		memcpy(*errmsg, msg, strlen(msg) + 1);
-		return 1;
+		goto error;
 	}
 
 	int end_front = input_size - output_size;	// the last bit of the first subfield, plus one
@@ -190,15 +192,20 @@ int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 	struct bitfield *front = bfsub(input, 0, end_front);
 	struct bitfield *end = bfsub(input, start_back, input_size);
 
+	char *errmsg2;
 	/* check if the overlapping parts are identical */
-	if (bfcmp(front, end, errmsg) != 0) {
+	if (bfcmp(front, end, &errmsg2) != 0) {
 		msg = "Can't ringify";
-		*errmsg = malloc(strlen(msg) + 1);
-		memcpy(*errmsg, msg, strlen(msg) + 1);
-		return 1;
+		goto error;
 	}
 	bfcpy(bfsub(input, 0, output_size), output);
 	return 0;
+error:
+	if (errmsg) {
+		*errmsg = malloc(strlen(msg) + 1);
+		if (*errmsg) memcpy(*errmsg, msg, strlen(msg) + 1);
+	}
+	return 1;
 }
 
 struct parents *rule30_parents_new(const int size)
