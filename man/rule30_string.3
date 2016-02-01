@@ -1,0 +1,44 @@
+.TH rule30_string 3 "FEBRUARY 1, 2016" "rule30 0.0.1" "Rule 30 cellular automaton library"
+.SH NAME
+rule30_string, rule30_string_ip \- transform an array of bits by Wolfram's Rule 30.
+.SH SYNOPSIS
+.nf
+.B "#include <rule30.h>
+.sp
+.BI "struct bitfield *void rule30_string(const struct bitfield *"input ");
+.BI "void rule30_string_ip(struct bitfield *"instance ");
+.fi
+.SH DESCRIPTION
+The \fBrule30_string()\fR function takes an array of bits \fIinput\fR, each bit representing the state of a cell, transforms it according to \fBWolfram's Rule 30\fR and returns the resulting array of bits, two bits shorter.
+.sp
+.br
+The \fBrule30_string_ip()\fR function takes an array of bits \fIinstance\fR, each bit representing the state of a cell, and transforms it "in-place" according to \fBWolfram's Rule 30\fR.
+.sp
+.br
+For details about Rule 30, see manual page for 
+.BR bitfield (3).
+.SH EXAMPLE
+E.g. the following code
+.sp
+.RS
+/* create and fill the parent string, 5 bits long */
+.br
+struct bitfield *input = str2bf("00100");
+.br
+/* transform and get the child string, 3 bits long */
+.br
+struct bitfield *output = rule30_string(input);
+.br
+/* print the bits as zeroes and ones */
+.br
+bfprint(output);
+.br
+.RE
+.LP
+should return "111".
+.SH "SEE ALSO"
+For the full list of rule30 functions and their descriptions, see manual page 
+for
+.BR rule30 (3).
+.SH AUTHOR
+Vitalie CIUBOTARU

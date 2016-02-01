@@ -1,0 +1,121 @@
+CC=@CC@
+export CC
+datarootdir=@datarootdir@
+prefix=@prefix@
+exec_prefix=@prefix@
+libdir=@libdir@
+includedir=@includedir@
+mandir=@mandir@
+AR=ar
+LIBS=-L. -I.
+CFLAGS=-Wall -O3
+export CFLAGS
+VERSION=0.0.1
+MANDIR=man
+TESTDIR=tests
+EXAMPLEDIR=examples
+#LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:$(shell pwd)
+LD_LIBRARY_PATH := $(shell pwd):$(LD_LIBRARY_PATH)
+export LD_LIBRARY_PATH
+HAVE_BITFIELD=@HAVE_BITFIELD@
+export HAVE_BITFIELD
+ifeq ($(HAVE_BITFIELD), 0)
+BITFIELD_LIB = -L../bitfield -I../bitfield
+else
+BITFIELD_LIB =
+endif
+PACKAGE_VERSION=@PACKAGE_VERSION@
+
+.PHONY: check man bitfield
+
+all: bitfield shared static
+
+bitfield:
+	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
+	echo 'Building local bitifield.'; \
+	$(MAKE) -C bitfield clean; \
+	cd bitfield; \
+	./configure --prefix=$(DESTDIR); \
+	$(MAKE) -C bitfield all; \
+	else echo 'Using systemwide bitfield.'; fi
+
+shared: rule30.c
+	$(CC) $(CFLAGS) -c -fpic rule30.c -o rule30-shared.o -I. $(BITFIELD_LIB)
+	$(CC) $(CFLAGS) -shared -Wl,-soname,librule30.so.0 -o librule30.so.$(VERSION) rule30-shared.o $(LIBS)
+	for i in librule30.so.0 librule30.so; do if [ -e $$i ]; then rm -v $$i; fi; done
+	ln -sv librule30.so.$(VERSION) librule30.so.0
+	ln -sv librule30.so.$(VERSION) librule30.so
+
+static: rule30.c
+	$(CC) $(CFLAGS) -c rule30.c -o rule30-static.o $(BITFIELD_LIB)
+	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
+	$(AR) rcs librule30.a rule30-static.o bitfield/bf-static.o; \
+	else \
+	$(AR) rcs librule30.a rule30-static.o; \
+	fi
+
+#
+#test%: test%.c
+#	$(CC) $(CFLAGS) -o $@ $< -I. $(LIBS) -lrule30 -lrule30-char
+#
+
+check: build-tests run-tests
+
+build-tests:
+	$(MAKE) -C $(TESTDIR) build-tests
+
+run-tests:
+	$(MAKE) -C $(TESTDIR) run-tests
+
+examples: build-examples run-examples
+
+build-examples:
+	$(MAKE) -C $(EXAMPLEDIR) build-examples
+
+run-examples:
+	$(MAKE) -C $(EXAMPLEDIR) run-examples
+
+install: install-lib install-header install-man
+
+install-lib:
+	mkdir -p $(DESTDIR)$(libdir)
+	for i in librule30.so.0 librule30.so librule30.so.$(VERSION) librule30.a; do if [ -e $(DESTDIR)$(libdir)/$$i ]; then rm -v $(DESTDIR)$(libdir)/$$i; fi; done
+	install -m 0644 librule30.so.$(VERSION) $(DESTDIR)$(libdir)
+	ln -sv librule30.so.$(VERSION) $(DESTDIR)$(libdir)/librule30.so.0
+	ln -sv librule30.so.$(VERSION) $(DESTDIR)$(libdir)/librule30.so
+	install -m 0644 librule30.a $(DESTDIR)$(libdir)
+
+install-header:
+	mkdir -p $(DESTDIR)$(includedir)
+	install -m 644 rule30.h $(DESTDIR)$(includedir)/rule30.h
+
+install-man:
+	$(MAKE) -C $(MANDIR) install
+
+uninstall: uninstall-lib uninstall-header uninstall-man
+
+uninstall-lib:
+	for i in librule30.so.0 librule30.so librule30.so.$(VERSION) librule30.a; do if [ -e $(DESTDIR)$(libdir)/$$i ]; then rm -v $(DESTDIR)$(libdir)/$$i; fi; done
+#	ldconfig -n $(DESTDIR)$(libdir)
+
+uninstall-header:
+	if [ -e $(DESTDIR)$(includedir)/rule30.h ]; then rm -v $(DESTDIR)$(includedir)/rule30.h; fi
+
+uninstall-man:
+	$(MAKE) -C $(MANDIR) uninstall
+
+clean:
+	rm -rvf *.a *.o *.so* rule30 populate
+	$(MAKE) -C $(TESTDIR) clean
+	$(MAKE) -C $(EXAMPLEDIR) clean
+
+distclean:
+	rm config.log config.status config.h Makefile
+	$(MAKE) -C $(MANDIR) distclean
+	$(MAKE) -C $(TESTDIR) distclean
+	$(MAKE) -C $(EXAMPLEDIR) distclean
+
+populate:
+	$(CC) $(CFLAGS) -o populate populate.c -I. $(LIBS) -lsqlite3 -lrule30
+
+

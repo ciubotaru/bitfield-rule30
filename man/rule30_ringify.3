@@ -1,0 +1,51 @@
+.TH rule30_ringify 3 "FEBRUARY 1, 2016" "rule30 0.0.1" "Rule 30 cellular automaton library"
+.SH NAME
+rule30_ringify \-  tests if an array of bits can be treated as a ring
+.SH SYNOPSIS
+.nf
+.B "#include <rule30.h>
+.sp
+.BI "int rule30_ringify(const struct bitfield *"input ", struct bitfield *"output ", char **"errmsg ");
+.fi
+.SH DESCRIPTION
+The \fBrule30_ringify()\fR function takes a pointer to the bit array 
+\fIinput\fR and tests if it can be treated as a ring of given length 
+\fBWolfram's Rule 30\fR. On success, it writes the resulting ring to bit array 
+\fIoutput\fR and returns 0. On failure, it writes the error message to 
+\fIerrmsg\fR and returns 1. For details about Rule 30, see manual page for 
+.BR bitfield (3).
+.SH EXAMPLE
+E.g. the following code
+.sp
+.RS
+/* create and fill a bit array, 5 bits long */
+.br
+struct bitfield *input = str2bf("00100");
+.br
+/* create an empty array, same length */
+.br
+struct bitfield *output = bfnew_quick(4);
+.br
+/* create a string for error message */
+.br
+char *errmsg;
+.br
+/* try to ringtify */
+.br
+int result = rule30_ringify(input, output, &errmsg);
+.br
+/* print the ring or the error message*/
+.br
+if (result == 0) bfprint(output);
+.br
+else printf("%s\n", errmsg);
+.br
+.RE
+.LP
+should return "0010".
+.SH "SEE ALSO"
+For the full list of rule30 functions and their descriptions, see manual page 
+for
+.BR rule30 (3).
+.SH AUTHOR
+Vitalie CIUBOTARU

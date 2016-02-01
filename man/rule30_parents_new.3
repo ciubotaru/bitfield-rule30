@@ -1,0 +1,32 @@
+.TH rule30_parents_new 3 "FEBRUARY 1, 2015" "rule30 0.0.1" "Bitfield manipulation library"
+.SH NAME
+rule30_parents_new, rule30_parents_del \- create and delete parents structures.
+.SH SYNOPSIS
+.nf
+.B "#include <rule30.h>
+.sp
+.BI "struct parents *rule30_parents_new(const int "size ");
+.BI "void rule30_parents_del(struct parents *"instance ");
+.fi
+.SH DESCRIPTION
+A bitfield is represented by a "struct bitfield". This structure has two elements: an array of unsigned long integers \fIfield\fR and an integer \fIsize\fR. Arrays that would, if transformed by Wolfram's Rule 30, yield a given bitfield are called "parents" and are represented by a "struct parents". This structure has one element: an array of 4 bitfields \fIparent\fR.
+.sp
+The \fBrule30_parents_new()\fR function initializes a parents structure of given \fIsize\fR and returns a pointer to it. This pointer can later be successfully passed to \fBrule30_parents_del()\fR. The parent arrays are guaranteed to be empty (i.e. contain only zeroes).
+.sp
+The \fBrule30_parents_del()\fR function frees the memory space pointed to by \fIinstance\fR, which must have been returned by a previous call to \fBrule30_parents_new()\fR or another similar function.
+.SH EXAMPLES
+The following code
+.sp
+    struct parents * myparents = rule30_parents_new(80);
+.sp
+will create a parents structure called \fImyparents\fR with 4 bitfields, long enough to host 80 bits each. The following code
+.sp
+    rule30_parents_del(myparents);
+.sp
+will delete the memory taken by a parents structure called \fImyparents\fR, effectively deleting the structure along with the bitfields inside it, and making it unavailable for subsequent calls.
+.sp
+.SH "SEE ALSO"
+For the full list of rule30 functions and their descriptions, see manual page for
+.BR rule30 (3).
+.SH AUTHOR
+Vitalie CIUBOTARU

@@ -1,0 +1,37 @@
+.TH rule30_rev_bit 3 "FEBRUARY 1, 2016" "rule30 0.0.1" "Rule 30 cellular automaton library"
+.SH NAME
+rule30_rev_bit \- reverse-transform one bit by Wolfram's Rule 30.
+.SH SYNOPSIS
+.nf
+.B "#include <rule30.h>
+.sp
+.BI "struct parents *rule30_rev_bit(const int "input ");
+.fi
+.SH DESCRIPTION
+The \fBrule30_rev_bit()\fR function takes the first bit of an integer \fIinput\fR, reverse-tranforms it according to \fBWolfram's Rule 30\fR, and returns the 4 possible triplets of "parents". For details about Rule 30, see manual page for 
+.BR bitfield (3).
+.SH EXAMPLE
+E.g. the following code
+.sp
+.RS
+/* set one bit in an integer */
+.br
+int input = 1;
+.br
+/* transform */
+.br
+struct parents *output = rule30_rev_bit(input);
+.br
+/* print one of the four possible parents */
+.br
+bfprint((output->parent[0]));
+.br
+.RE
+.LP
+should return "100".
+.SH "SEE ALSO"
+For the full list of rule30 functions and their descriptions, see manual page 
+for
+.BR rule30 (3).
+.SH AUTHOR
+Vitalie CIUBOTARU

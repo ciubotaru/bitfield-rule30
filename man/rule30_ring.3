@@ -1,0 +1,44 @@
+.TH rule30_ring 3 "FEBRUARY 1, 2016" "rule30 0.0.1" "Rule 30 cellular automaton library"
+.SH NAME
+rule30_ring, rule30_ring_ip \- treat the input array of bits as a ring and transform it by Wolfram's Rule 30.
+.SH SYNOPSIS
+.nf
+.B "#include <rule30.h>
+.sp
+.BI "struct bitfield *rule30_ring(const struct bitfield *"input ");
+.BI "void rule30_ring_ip(struct bitfield *"instance ");
+.fi
+.SH DESCRIPTION
+The \fBrule30_ring()\fR function takes an array of bits \fIinput\fR, each bit representing the state of a cell, treats it as a ring or loop, transforms it according to \fBWolfram's Rule 30\fR and returns the resulting array of bits of the same length.
+.sp
+.br
+The \fBrule30_ring_ip()\fR function takes an array of bits \fIinstance\fR, each bit representing the state of a cell, treats it as a ring or loop, and transforms it "in-place" according to \fBWolfram's Rule 30\fR.
+.sp
+.br
+For details about Rule 30, see manual page for 
+.BR bitfield (3).
+.SH EXAMPLE
+E.g. the following code
+.sp
+.RS
+/* create and fill the parent string, 5 bits long */
+.br
+struct bitfield *input = str2bf("00100");
+.br
+/* transform  and get the child string, same length */
+.br
+struct bitfield *output = rule30_ring(input);
+.br
+/* print the bits as zeroes and ones */
+.br
+bfprint(output);
+.br
+.RE
+.LP
+should return "01110".
+.SH "SEE ALSO"
+For the full list of rule30 functions and their descriptions, see manual page 
+for
+.BR rule30 (3).
+.SH AUTHOR
+Vitalie CIUBOTARU

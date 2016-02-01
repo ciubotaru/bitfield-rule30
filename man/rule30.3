@@ -1,0 +1,135 @@
+.TH rule30 3 "FEBRUARY 1, 2016" "rule30 0.0.1" "Rule 30 cellular automaton library"
+.SH NAME
+rule30 \- API for Wolfram's Rule 30 cellular automaton and related transformations.
+.SH DESCRIPTION
+A library of functions for transforming bit arrays, i.e. series of zeroes and 
+ones spread across an array of storage units, according to Wolfram's Rule 30.
+.br
+.LP
+.B Rule 30 
+is a one-dimensional two-state cellular automaton rule. The automaton consists of a sequence of symbols (sometimes thought of as a row of cells). Two states mean that the symbol can take one of two values (0 or 1), or, in other words, the corresponding cell can be either "dead" or "alive". The state of the sequence is computed from the previous state. The state of a cell depends on the previous state of the cell itself, as well as the two neighbouring cells.
+.sp
+The rule is:
+.sp
+.B s'(i) = s(i-1) XOR [ s(i) OR s(i+1) ],
+where:
+.RS
+.B i 
+is the position of a cell in the row;
+.br
+.B s 
+is the current value (or "state") of i-th cell, can be 0 ("dead") or 1 ("alive");
+.br
+.B s' 
+is the next state (future generation) of the cell.
+.SH DATA TYPES
+.LP
+.B struct bitfield
+.br
+.RS
+.LP
+All functions in rule30 heavily rely on the \fIbitfield\fR data structure, 
+implemented in \fIlibbitfield\fR package. It is a data structure for storing 
+bit arrays. For details, see manual page for 
+.BR bitfield (3).
+.RE
+.LP
+.B struct parents
+.br
+.RS
+.LP
+It is a pointer to an array of 4 \fIbitfield\fR structures. This is needed, 
+because any state of the Rule 30 automaton can be obtained from (at most) 4 
+different previous (the so-called `parent') states.
+.SH EXPORTS
+.LP
+.B
+rule30_string()
+.br
+.RS
+.LP
+transforms an array of bits by Wolfram's Rule 30. For details, see manual page 
+for
+.BR rule30_string (3).
+
+.RE
+.LP
+.B
+rule30_string_ip()
+.br
+.RS
+.LP
+transforms an array of bits by Wolfram's Rule 30 "in-place". For details, see 
+manual page for
+.BR rule30_string_ip (3).
+.RE
+.LP
+.B
+rule30_ring()
+.br
+.RS
+.LP
+treats the input array of bits as a ring and transforms it by Wolfram's Rule 
+30. For details, see manual page for
+.BR rule30_ring (3).
+.RE
+.LP
+.B
+rule30_ring_ip()
+.br
+.RS
+.LP
+treats the input array of bits as a ring and transforms it by Wolfram's Rule 
+30 "in-place". For details, see manual page for
+.BR rule30_ring_ip (3).
+.RE
+.LP
+.B
+rule30_rev_bit()
+.br
+.RS
+.LP
+returns the four parent triplets of a bit (0 or 1). For details, see manual 
+page for
+.BR rule30_rev_bit (3).
+.RE
+.LP
+.B
+rule30_rev_string()
+.br
+.RS
+.LP
+reverse-transforms an array of bits by Wolfram's Rule 30, and returns all 
+possible parent combinations. For details, see manual page for
+.BR rule30_rev_string (3).
+.RE
+.LP
+.B
+rule30_ringify()
+.br
+.RS
+.LP
+tests if an array of bits can be treated as a ring and returns the resulting 
+ring. For details, see manual page for
+.BR rule30_ringify (3).
+.RE
+.LP
+.B
+rule30_parents_new()
+.br
+.RS
+.LP
+creates an empty parents structure. For details, see manual page for
+.BR rule30_parents_new (3).
+.RE
+.LP
+.B
+rule30_parents_del()
+.br
+.RS
+.LP
+deletes a parents structure. For details, see manual page for
+.BR rule30_parents_del (3).
+.RE
+.SH AUTHOR
+Vitalie CIUBOTARU

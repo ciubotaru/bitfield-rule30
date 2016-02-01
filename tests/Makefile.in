@@ -1,0 +1,27 @@
+TESTFILES=test1 test2 test3 test4 test5 
+#rule30_normalize rule30_rev_bit2 rule30_rev_string2 rule30_rev_8bit
+LIBS=-L.. -I..
+HAVE_BITFIELD = @HAVE_BITFIELD@
+ifeq ($(HAVE_BITFIELD), 0)
+BITFIELD_LIB = -L../bitfield -I../bitfield
+LD_LIBRARY_PATH := $(shell pwd)/../bitfield:$(LD_LIBRARY_PATH)
+else
+BITFIELD_LIB =
+endif
+
+tests: build-tests run-tests
+build-tests:
+	for i in $(TESTFILES); do \
+	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.c $(LIBS) -lrule30 $(BITFIELD_LIB) -lbitfield; done
+
+run-tests:
+	for i in $(TESTFILES); do \
+#	echo -n "Running $$i... "; \
+#	( env LD_LIBRARY_PATH=$(./$$i > /dev/null 2>&1 && echo "Passed.")  || (echo "Failed with code $$?"); \
+	./$$i; \
+	done
+clean:
+	rm -rvf $(TESTFILES)
+
+distclean:
+	rm Makefile

@@ -1,0 +1,7 @@
+Changelog
+
+0.0.1
+* Initial release.
+* Available functions: rule30_string(), rule30_string_ip(), rule30_ring(), 
+  rule30_ring_ip(), rule30_rev_bit(), rule30_rev_string(), rule30_ringify(), 
+  rule30_parents_new(), rule30_parents_del().

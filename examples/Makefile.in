@@ -1,0 +1,33 @@
+EXAMPLES=rule30_rev_bit
+LIBS=-L.. -I..
+HAVE_BITFIELD=@HAVE_BITFIELD@
+ifeq ($(HAVE_BITFIELD), 0)
+BITFIELD_LIB = -L../bitfield -I../bitfield
+LD_LIBRARY_PATH := $(shell pwd)/../bitfield:$(LD_LIBRARY_PATH)
+else
+BITFIELD_LIB =
+endif
+
+examples: build-examples run-examples
+build-examples:
+	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
+	for i in $(EXAMPLES); do \
+	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -c $$i.c -o $$i.o  $(LIBS); \
+	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.o ../rule30-static.o ../bitfield/bf-static.o; \
+	done; \
+	else \
+	for i in $(EXAMPLES); do \
+	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.c $(LIBS) -lrule30 $(BITFIELD_LIB) -lbitfield; done; \
+	fi
+
+run-examples:
+	for i in $(EXAMPLES); do \
+#	echo -n "Running $$i... "; \
+#	( env LD_LIBRARY_PATH=$(./$$i > /dev/null 2>&1 && echo "Passed.")  || (echo "Failed with code $$?"); \
+	./$$i; \
+	done
+clean:
+	rm -rvf $(EXAMPLES)
+
+distclean:
+	rm Makefile
