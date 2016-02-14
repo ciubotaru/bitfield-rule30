@@ -1,0 +1,50 @@
+.TH rule30_rev_ring 3 "FEBRUARY 15, 2016" "rule30 0.0.1" "Rule 30 cellular automaton library"
+.SH NAME
+rule30_rev_ring \- treat the input array of bits as a ring and attempt to reverse-transform it by Wolfram's Rule 30.
+.SH SYNOPSIS
+.nf
+.B "#include <rule30.h>
+.sp
+.BI "struct parents *rule30_rev_ring(const struct bitfield *"input ", int *"count ");
+.fi
+.SH DESCRIPTION
+The \fBrule30_rev_string()\fR function takes a pointer to the bit array 
+\fIinput\fR and a pointer to an integer \fIcount\fR, attempts to reverse-tranforms it according to \fBWolfram's Rule 30\fR, writes the number of obtained parent arrays to \fIcount\fR and returns the parents arrays packed in the 'parents' structure.
+.br
+A ring can have between 0 and 3 parents, so the resulting \fIcount\fR is be equal to 0, 1, 2 or 3 and the resulting 'parents' structure will have between 0 and 3 (out of 4) slots filled. The fourth slot is always empty (filled with zeroes).
+.br
+For details about Rule 30, see manual page for 
+.BR bitfield (3).
+.SH EXAMPLE
+E.g. the following code
+.sp
+.RS
+/* create and fill the child string, 6 bits long */
+.br
+struct bitfield *input = str2bf("111111");
+.br
+/* create a variable to store the number of parents */
+.br
+int count;
+.br
+/* transform */
+.br
+struct parents *output = rule30_rev_ring(input, &count);
+.br
+/* print the number of parents */
+.br
+printf("the string has %i parents\n", count);
+.br
+/* if there are parents, print one */
+.br
+if (count > 0) bfprint((output->parent[0]));
+.br
+.RE
+.LP
+should return "the string has 3 parents" and "010010".
+.SH "SEE ALSO"
+For the full list of rule30 functions and their descriptions, see manual page 
+for
+.BR rule30 (3).
+.SH AUTHOR
+Vitalie CIUBOTARU

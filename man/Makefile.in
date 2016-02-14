@@ -1,7 +1,7 @@
 datarootdir=@datarootdir@
 prefix=@prefix@
 mandir=@mandir@
-man_MANS=rule30.3 rule30_rev_bit.3 rule30_rev_string.3 rule30_ring.3 rule30_string.3 rule30_ringify.3 rule30_parents_new.3
+man_MANS=rule30.3 rule30_rev_bit.3 rule30_rev_ring.3 rule30_rev_string.3 rule30_ring.3 rule30_string.3 rule30_ringify.3 rule30_parents_new.3
 
 install:
 	mkdir -p $(DESTDIR)$(mandir)/man3
