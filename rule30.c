@@ -159,6 +159,25 @@ struct parents *rule30_rev_string(const struct bitfield *input)
 	return output;
 }
 
+struct parents *rule30_rev_ring(const struct bitfield *input, int *count)
+{
+	int i;
+	int result;
+	int size = bfsize(input);
+	struct parents *potential_parents = rule30_rev_string(input);
+	struct parents *parents = rule30_parents_new(size);
+	struct bitfield *potential_parent = bfnew(size);
+	(*count) = 0;
+	for (i = 0; i < 4; i++) {
+		result = rule30_ringify(potential_parents->parent[i], potential_parent, NULL);
+		if (result == 0) {
+			bfcpy(bfshift(potential_parent, -1), parents->parent[(int) *count]);
+			(*count)++;
+		}
+	}
+	return parents;
+}
+
 int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 		   char **errmsg)
 {
