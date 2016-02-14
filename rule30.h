@@ -34,7 +34,7 @@ struct parents *rule30_rev_bit(const int input); /* returns the four parent trip
 
 struct parents *rule30_rev_string(const struct bitfield *input); /* reverse-transforms an array of bits by Wolfram's Rule 30, and returns all possible parent combinations */
 
-struct parents *rule30_rev_ring(const struct bitfield *input, int status); /* treat the input array of bits as a ring and attempt to reverse-transform it by Wolfram's Rule 30 */
+struct parents *rule30_rev_ring(const struct bitfield *input, int *count); /* treat the input array of bits as a ring and attempt to reverse-transform it by Wolfram's Rule 30 */
 
 int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 		   char **errmsg); /* tests if an array of bits can be treated as a ring of given length and returns the resulting ring */
