@@ -39,7 +39,7 @@ int main()
 			else
 				bfclearbit(input, j);
 		}
-				struct parents *output = rule30_rev_string(input);
+		struct parents *output = rule30_rev_string(input);
 		check = rule30_string(output->parent[rand() % 4]);
 		if (bfcmp(input, check, &errmsg) != 0) {
 			printf("%s\n", failed);

@@ -47,7 +47,9 @@ int main()
 		struct parents *output = rule30_rev_ring(input, &count);
 		if (count != 0) {
 			for (j = 0; j < count; j++) {
-				if (bfcmp(rule30_ring(output->parent[j]), input, &errmsg) != 0) {
+				if (bfcmp
+				    (rule30_ring(output->parent[j]), input,
+				     &errmsg) != 0) {
 					printf("%s\n", failed);
 					free(input_char);
 					free(start_char);
@@ -56,7 +58,7 @@ int main()
 					return 1;
 				}
 			}
-		rule30_parents_del(output);
+			rule30_parents_del(output);
 		}
 	}
 	free(input_char);
