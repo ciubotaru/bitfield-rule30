@@ -32,7 +32,8 @@ all: bitfield shared static
 
 bitfield:
 	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
-	echo 'Building local bitifield.'; \
+	if [ ! -d "bitfield" ] && [ ! -f "bitfield" ]; then echo "Local bitfield is required, but bitfield source tree is missing.\nPlease, provide 'bitfield' directory with source tree and type 'make' again."; exit 1; fi; \
+	echo 'Building local bitfield.'; \
 	$(MAKE) -C bitfield clean; \
 	cd bitfield; \
 	./configure --prefix=$(DESTDIR); \
