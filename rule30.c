@@ -110,7 +110,6 @@ struct parents *rule30_rev_string(const struct bitfield *input)
 		rule30_parents_del(temp_0);
 		return output;
 	}
-
 	//initialize temp storage arrays
 	struct parents *temp_l = rule30_parents_new(size + 2);
 	struct parents *temp_r = rule30_parents_new(size + 2);
@@ -169,9 +168,12 @@ struct parents *rule30_rev_ring(const struct bitfield *input, int *count)
 	struct bitfield *potential_parent = bfnew(size);
 	(*count) = 0;
 	for (i = 0; i < 4; i++) {
-		result = rule30_ringify(potential_parents->parent[i], potential_parent, NULL);
+		result =
+		    rule30_ringify(potential_parents->parent[i],
+				   potential_parent, NULL);
 		if (result == 0) {
-			bfcpy(bfshift(potential_parent, -1), parents->parent[(int) *count]);
+			bfcpy(bfshift(potential_parent, -1),
+			      parents->parent[(int)*count]);
 			(*count)++;
 		}
 	}
@@ -181,7 +183,7 @@ struct parents *rule30_rev_ring(const struct bitfield *input, int *count)
 int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 		   char **errmsg)
 {
-    /* This function extracts 2 sub bitfields that overlap and compares them */
+	/* This function extracts 2 sub bitfields that overlap and compares them */
 
 	char *msg;
 	int input_size = bfsize(input);
@@ -219,10 +221,11 @@ int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 	}
 	bfcpy(bfsub(input, 0, output_size), output);
 	return 0;
-error:
+ error:
 	if (errmsg) {
 		*errmsg = malloc(strlen(msg) + 1);
-		if (*errmsg) memcpy(*errmsg, msg, strlen(msg) + 1);
+		if (*errmsg)
+			memcpy(*errmsg, msg, strlen(msg) + 1);
 	}
 	return 1;
 }

@@ -19,7 +19,7 @@ int main()
 {
 	srand((unsigned)time(NULL));
 	int i;			//counter
-    unsigned int input;
+	unsigned int input;
 	int len = 80;
 	char *msg = "Testing rule30_rev_bit()";
 	char *failed = "[FAIL]";
@@ -33,7 +33,8 @@ int main()
 		input = rand() % 2;
 		struct parents *triplet = rule30_rev_bit(input);
 		int choice = rand() % 4;
-		struct bitfield *output = rule30_string(triplet->parent[choice]);
+		struct bitfield *output =
+		    rule30_string(triplet->parent[choice]);
 		rule30_parents_del(triplet);
 		if (bfgetbit(output, 0) != input) {
 			printf("%s\n", failed);
