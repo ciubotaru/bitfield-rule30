@@ -1,4 +1,4 @@
-.TH rule30 3 "FEBRUARY 1, 2016" "rule30 0.0.1" "Rule 30 cellular automaton library"
+.TH rule30 3 "MARCH 20, 2016" "rule30 0.4.0" "Rule 30 cellular automaton library"
 .SH NAME
 rule30 \- API for Wolfram's Rule 30 cellular automaton and related transformations.
 .SH DESCRIPTION
@@ -44,44 +44,21 @@ different previous (the so-called `parent') states.
 .SH EXPORTS
 .LP
 .B
-rule30_string()
+rule30_parents_del()
 .br
 .RS
 .LP
-transforms an array of bits by Wolfram's Rule 30. For details, see manual page 
-for
-.BR rule30_string (3).
-
+deletes a parents structure. For details, see manual page for
+.BR rule30_parents_del (3).
 .RE
 .LP
 .B
-rule30_string_ip()
+rule30_parents_new()
 .br
 .RS
 .LP
-transforms an array of bits by Wolfram's Rule 30 "in-place". For details, see 
-manual page for
-.BR rule30_string_ip (3).
-.RE
-.LP
-.B
-rule30_ring()
-.br
-.RS
-.LP
-treats the input array of bits as a ring and transforms it by Wolfram's Rule 
-30. For details, see manual page for
-.BR rule30_ring (3).
-.RE
-.LP
-.B
-rule30_ring_ip()
-.br
-.RS
-.LP
-treats the input array of bits as a ring and transforms it by Wolfram's Rule 
-30 "in-place". For details, see manual page for
-.BR rule30_ring_ip (3).
+creates an empty parents structure. For details, see manual page for
+.BR rule30_parents_new (3).
 .RE
 .LP
 .B
@@ -95,6 +72,16 @@ page for
 .RE
 .LP
 .B
+rule30_ring()
+.br
+.RS
+.LP
+treats the input array of bits as a ring and attempts to reverse-transform
+it by Wolfram's Rule 30. For details, see manual page for
+.BR rule30_ring (3).
+.RE
+.LP
+.B
 rule30_rev_string()
 .br
 .RS
@@ -102,6 +89,26 @@ rule30_rev_string()
 reverse-transforms an array of bits by Wolfram's Rule 30, and returns all 
 possible parent combinations. For details, see manual page for
 .BR rule30_rev_string (3).
+.RE
+.LP
+.B
+rule30_ring_ip()
+.br
+.RS
+.LP
+treats the input array of bits as a ring and transforms it by Wolfram's Rule 
+30 "in-place". For details, see manual page for
+.BR rule30_ring_ip (3).
+.RE
+.LP
+.B
+rule30_ring()
+.br
+.RS
+.LP
+treats the input array of bits as a ring and transforms it by Wolfram's Rule 
+30. For details, see manual page for
+.BR rule30_ring (3).
 .RE
 .LP
 .B
@@ -115,21 +122,23 @@ ring. For details, see manual page for
 .RE
 .LP
 .B
-rule30_parents_new()
+rule30_string_ip()
 .br
 .RS
 .LP
-creates an empty parents structure. For details, see manual page for
-.BR rule30_parents_new (3).
+transforms an array of bits by Wolfram's Rule 30 "in-place". For details, see 
+manual page for
+.BR rule30_string_ip (3).
 .RE
 .LP
 .B
-rule30_parents_del()
+rule30_string()
 .br
 .RS
 .LP
-deletes a parents structure. For details, see manual page for
-.BR rule30_parents_del (3).
+transforms an array of bits by Wolfram's Rule 30. For details, see manual page 
+for
+.BR rule30_string (3).
 .RE
 .SH AUTHOR
 Vitalie CIUBOTARU

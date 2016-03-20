@@ -10,15 +10,9 @@ endif
 
 examples: build-examples run-examples
 build-examples:
-	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
 	for i in $(EXAMPLES); do \
-	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -c $$i.c -o $$i.o  $(LIBS); \
-	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.o ../rule30-static.o ../bitfield/bf-static.o; \
-	done; \
-	else \
-	for i in $(EXAMPLES); do \
-	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.c $(LIBS) -lrule30 $(BITFIELD_LIB) -lbitfield; done; \
-	fi
+	echo $$i; \
+	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.c $(LIBS) -lrule30 $(BITFIELD_LIB) -lbitfield; done
 
 run-examples:
 	for i in $(EXAMPLES); do \
@@ -27,6 +21,7 @@ run-examples:
 	./$$i; \
 	done
 clean:
+	rm -rvf *.a *.o *.so*
 	rm -rvf $(EXAMPLES)
 
 distclean:

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT(rule30, 0.0.1, mwambanatanga@gmail.com)
+AC_INIT(rule30, 0.4.0, vitalie@ciubotaru.tk)
 AC_CONFIG_SRCDIR([rule30.c])
 AC_ARG_WITH([local-bitfield], AS_HELP_STRING([--with-local-bitfield], [Ignore system bitfield library and build local]), [], [])
 AC_CONFIG_HEADERS([config.h])
