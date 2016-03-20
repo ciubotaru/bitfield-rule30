@@ -20,7 +20,6 @@ int main()
 	srand((unsigned)time(NULL));
 	int i, j;		//counters
 	int len = 80;
-	char *errmsg;
 	char *msg = "Testing rule30_rev_ring()";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
@@ -47,9 +46,7 @@ int main()
 		struct parents *output = rule30_rev_ring(input, &count);
 		if (count != 0) {
 			for (j = 0; j < count; j++) {
-				if (bfcmp
-				    (rule30_ring(output->parent[j]), input,
-				     &errmsg) != 0) {
+				if (bfcmp(rule30_ring(output->parent[j]), input, NULL) != 0) {
 					printf("%s\n", failed);
 					free(input_char);
 					free(start_char);

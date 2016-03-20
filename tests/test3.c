@@ -18,7 +18,6 @@ int main()
 {
 	int i;			//counter
 	int len = 80;
-	char *errmsg;
 	char *msg = "Testing rule30_ring()";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
@@ -39,7 +38,7 @@ int main()
 	for (i = 0; i < 50; i++) {
 		input = rule30_ring(input);
 	}
-	if (bfcmp(input, check, &errmsg) != 0) {
+	if (bfcmp(input, check, NULL) != 0) {
 		printf("%s\n", failed);
 		return 1;
 	}
