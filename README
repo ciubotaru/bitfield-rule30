@@ -41,7 +41,7 @@ To compile bitfield from source code:
     $ make
 
 The only compile-time and run-time dependency is Vitalie Ciubotaru's 'bitfield' 
-library (version 0.3.*). If bitfield is not installed, or if the sources were 
+library (version 0.4.*). If bitfield is not installed, or if the sources were 
 configured with the '--with-local-bitfield' flag, make will assume that the 
 source code of bitfield is available in the source tree (in 'bitfield' 
 directory) and will attempt to build it first.
