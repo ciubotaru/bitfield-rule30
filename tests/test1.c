@@ -18,7 +18,6 @@ int main()
 {
 	int i;			//counter
 	int len = 80;
-	char *errmsg;
 	char *msg = "Testing rule30_string()";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
@@ -45,7 +44,7 @@ int main()
 		input = bfcat(tmp, empty);	// 81 + 1 = 82
 		input = rule30_string(input);
 	}
-	if (bfcmp(input, check, &errmsg) != 0) {
+	if (bfcmp(input, check, NULL) != 0) {
 		printf("%s\n", failed);
 		return 1;
 	}
