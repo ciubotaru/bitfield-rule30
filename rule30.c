@@ -4,7 +4,7 @@
  * URL: https://github.com/ciubotaru/bitfield
  * Author: Vitalie Ciubotaru <vitalie at ciubotaru dot tk>
  * License: General Public License, version 3 or later
- * Date: February 1, 2016
+ * Copyright 2016
 **/
 
 #include <stdio.h>
@@ -13,58 +13,23 @@
 #include <assert.h>
 #include "rule30.h"
 
-struct bitfield *rule30_string(const struct bitfield *input)
+void rule30_parents_del(struct parents *instance)
 {
-	int input_size = bfsize(input);
-	struct bitfield *left = bfsub(input, 0, input_size - 2);
-	struct bitfield *center = bfsub(input, 1, input_size - 1);
-	struct bitfield *right = bfsub(input, 2, input_size);
-	struct bitfield *output = bfnew_quick(input_size - 2);
-	/* compute the child generation by Rule 30:
-	 * Child(i) = Parent(i-1) XOR ( Parent(i) OR Parent(i+1) )
-	 */
-	bfcpy(bfxor(left, bfor(center, right)), output);
-	bfdel(left);
-	bfdel(center);
-	bfdel(right);
-	return output;
+	int i;
+	for (i = 0; i < 4; i++)
+		bfdel(instance->parent[i]);
+	free(instance);
+	return;
 }
 
-void rule30_string_ip(struct bitfield *instance)
+struct parents *rule30_parents_new(const int size)
 {
-	int size = bfsize(instance);
-	struct bitfield *left = bfsub(instance, 0, size - 2);
-	struct bitfield *center = bfsub(instance, 1, size - 1);
-	struct bitfield *right = bfsub(instance, 2, size);
-	bfresize(instance, size - 2);
-	/* compute the child generation by Rule 30:
-	 * Child(i) = Parent(i-1) XOR ( Parent(i) OR Parent(i+1) )
-	 */
-	bfcpy(bfxor(left, bfor(center, right)), instance);
-	bfdel(left);
-	bfdel(center);
-	bfdel(right);
-}
-
-struct bitfield *rule30_ring(const struct bitfield *input)
-{
-	int input_size = bfsize(input);
-	struct bitfield *left = bfshift(input, 1);
-	struct bitfield *right = bfshift(input, -1);
-	struct bitfield *output = bfnew_quick(input_size);
-	bfcpy(bfxor(left, bfor(input, right)), output);
-	bfdel(left);
-	bfdel(right);
-	return output;
-}
-
-void rule30_ring_ip(struct bitfield *instance)
-{
-	struct bitfield *left = bfshift(instance, 1);
-	struct bitfield *right = bfshift(instance, -1);
-	bfcpy(bfxor(left, bfor(instance, right)), instance);
-	bfdel(left);
-	bfdel(right);
+	/* returns a pointer to struct parent */
+	int i;
+	struct parents *instance = malloc(4 * sizeof(struct parents));
+	for (i = 0; i < 4; i++)
+		(instance->parent)[i] = bfnew(size);
+	return instance;
 }
 
 struct parents *rule30_rev_bit(const int input)
@@ -82,6 +47,28 @@ struct parents *rule30_rev_bit(const int input)
 		str2bf_ip("111", output->parent[3]);
 	}
 	return output;
+}
+
+struct parents *rule30_rev_ring(const struct bitfield *input, int *count)
+{
+	int i;
+	int result;
+	int size = bfsize(input);
+	struct parents *potential_parents = rule30_rev_string(input);
+	struct parents *parents = rule30_parents_new(size);
+	struct bitfield *potential_parent = bfnew(size);
+	(*count) = 0;
+	for (i = 0; i < 4; i++) {
+		result =
+		    rule30_ringify(potential_parents->parent[i],
+				   potential_parent, NULL);
+		if (result == 0) {
+			bfcpy(bfshift(potential_parent, -1),
+			      parents->parent[(int)*count]);
+			(*count)++;
+		}
+	}
+	return parents;
 }
 
 struct parents *rule30_rev_string(const struct bitfield *input)
@@ -157,26 +144,25 @@ struct parents *rule30_rev_string(const struct bitfield *input)
 	return output;
 }
 
-struct parents *rule30_rev_ring(const struct bitfield *input, int *count)
+void rule30_ring_ip(struct bitfield *instance)
 {
-	int i;
-	int result;
-	int size = bfsize(input);
-	struct parents *potential_parents = rule30_rev_string(input);
-	struct parents *parents = rule30_parents_new(size);
-	struct bitfield *potential_parent = bfnew(size);
-	(*count) = 0;
-	for (i = 0; i < 4; i++) {
-		result =
-		    rule30_ringify(potential_parents->parent[i],
-				   potential_parent, NULL);
-		if (result == 0) {
-			bfcpy(bfshift(potential_parent, -1),
-			      parents->parent[(int)*count]);
-			(*count)++;
-		}
-	}
-	return parents;
+	struct bitfield *left = bfshift(instance, 1);
+	struct bitfield *right = bfshift(instance, -1);
+	bfcpy(bfxor(left, bfor(instance, right)), instance);
+	bfdel(left);
+	bfdel(right);
+}
+
+struct bitfield *rule30_ring(const struct bitfield *input)
+{
+	int input_size = bfsize(input);
+	struct bitfield *left = bfshift(input, 1);
+	struct bitfield *right = bfshift(input, -1);
+	struct bitfield *output = bfnew_quick(input_size);
+	bfcpy(bfxor(left, bfor(input, right)), output);
+	bfdel(left);
+	bfdel(right);
+	return output;
 }
 
 int rule30_ringify(const struct bitfield *input, struct bitfield *output,
@@ -228,21 +214,35 @@ int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 	return 1;
 }
 
-struct parents *rule30_parents_new(const int size)
+void rule30_string_ip(struct bitfield *instance)
 {
-	/* returns a pointer to struct parent */
-	int i;
-	struct parents *instance = malloc(4 * sizeof(struct parents));
-	for (i = 0; i < 4; i++)
-		(instance->parent)[i] = bfnew(size);
-	return instance;
+	int size = bfsize(instance);
+	struct bitfield *left = bfsub(instance, 0, size - 2);
+	struct bitfield *center = bfsub(instance, 1, size - 1);
+	struct bitfield *right = bfsub(instance, 2, size);
+	bfresize(instance, size - 2);
+	/* compute the child generation by Rule 30:
+	 * Child(i) = Parent(i-1) XOR ( Parent(i) OR Parent(i+1) )
+	 */
+	bfcpy(bfxor(left, bfor(center, right)), instance);
+	bfdel(left);
+	bfdel(center);
+	bfdel(right);
 }
 
-void rule30_parents_del(struct parents *instance)
+struct bitfield *rule30_string(const struct bitfield *input)
 {
-	int i;
-	for (i = 0; i < 4; i++)
-		bfdel(instance->parent[i]);
-	free(instance);
-	return;
+	int input_size = bfsize(input);
+	struct bitfield *left = bfsub(input, 0, input_size - 2);
+	struct bitfield *center = bfsub(input, 1, input_size - 1);
+	struct bitfield *right = bfsub(input, 2, input_size);
+	struct bitfield *output = bfnew_quick(input_size - 2);
+	/* compute the child generation by Rule 30:
+	 * Child(i) = Parent(i-1) XOR ( Parent(i) OR Parent(i+1) )
+	 */
+	bfcpy(bfxor(left, bfor(center, right)), output);
+	bfdel(left);
+	bfdel(center);
+	bfdel(right);
+	return output;
 }
