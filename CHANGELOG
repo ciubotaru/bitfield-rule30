@@ -1,5 +1,10 @@
 Changelog
 
+0.4.0
+* Added rule30_rev_ring().
+* Changed rule30_ringify() syntaxt (the err msg argument is optional now).
+* Switched to new bfcmp() function from bitfield-0.4.*.
+
 0.0.1
 * Initial release.
 * Available functions: rule30_string(), rule30_string_ip(), rule30_ring(), 

@@ -1,7 +1,7 @@
 rule30
 ======
 
-Version 0.0.1 (February 1, 2015)
+Version 0.4.0 (March 20, 2016)
 
 rule30 is a collection of functions that implement Wolfram's 
 [Rule 30](http://en.wikipedia.org/wiki/Rule_30) cellular automaton and related 
@@ -41,7 +41,7 @@ To compile bitfield from source code:
     $ make
 
 The only compile-time and run-time dependency is Vitalie Ciubotaru's 'bitfield' 
-library (version 0.3.*). If bitfield is not installed, or if the sources were 
+library (version 0.4.*). If bitfield is not installed, or if the sources were 
 configured with the '--with-local-bitfield' flag, make will assume that the 
 source code of bitfield is available in the source tree (in 'bitfield' 
 directory) and will attempt to build it first.
@@ -50,105 +50,38 @@ directory) and will attempt to build it first.
 `make check` runs some tests agains the newly-built library.
 `make examples` runs some examples with graphical output.
 
-API of librule30
-----------------
-librule30 provides:
+Functions
+---------
+For function syntax, see "rule30.h". For details on every function, see
+its manual page.
 
-## rule30_string
-`rule30_string` takes an array of bits, each bit representing the state of a cell, transforms it according to Wolfram's Rule 30 and returns the resulting array of bits, two bits shorter.
+rule30_parents_del() deletes a parents structure.
 
-E.g. the following code
+rule30_parents_new() creates an empty parents structure.
 
-    /* create and fill the parent string, 5 bits long */
-    struct bitfield *input = str2bf("00100");
-    
-    /* transform and get the child string, 3 bits long */
-    struct bitfield *output = rule30_string(input);
-    
-    /* print the bits as zeroes and ones */
-    bfprint(output);
+rule30_rev_bit() returns the four parent triplets of a bit (0 or 1)
 
-should return "111".
+rule30_rev_ring() treats the input array of bits as a ring and attempts
+to reverse-transform it by Wolfram's Rule 30.
 
-## rule30_string_ip
-`rule30_string_ip` takes an array of bits, each bit representing the state of a cell and transforms it according to Wolfram's Rule 30 "in-place".
+rule30_rev_string() reverse-transforms an array of bits by Wolfram's
+Rule 30, and returns all possible parent combinations.
 
-## rule30_ring
-`rule30_ring` takes an array of bits, each bit representing the state of a cell, treats it as a ring or loop, transforms it according to Wolfram's Rule 30 and returns the resulting array of bits of the same length.
+rule30_ring_ip() treats the input array of bits as a ring and transforms
+it by Wolfram's Rule 30 "in-place".
 
-E.g. the following code
+rule30_ring() treats the input array of bits as a ring and transforms it
+by Wolfram's Rule 30.
 
-    /* create and fill the parent string, 5 bits long */
-    struct bitfield *input = str2bf("00100");
-    
-    /* transform  and get the child string, same length */
-    struct bitfield *output = rule30_ring(input);
-    
-    /* print the bits as zeroes and ones */
-    bfprint(output);
+rule30_ringify() tests if an array of bits can be treated as a ring of
+given length and returns the resulting ring.
 
-should return "01110".
+rule30_string_ip() transforms an array of bits by Wolfram's Rule 30
+"in-place".
 
-## rule30_ring_ip
-`rule30_ring_ip` takes an array of bits, each bit representing the state of a cell, treats it as a ring or loop, and transforms it "in-place" according to Wolfram's Rule 30.
+rule30_string() transforms an array of bits by Wolfram's Rule 30.
 
-## rule30_rev_bit
-`rule30_rev_bit` takes one integer number and returns an array of 4 triplets corresponding to 4 possible "parents".
-
-E.g. the following code
-
-    /* set one bit in an integer */
-    int input = 1;
-    
-    /* transform */
-    struct parents *output = rule30_rev_bit(input);
-    
-    /* print one of the four possible parents */
-    bfprint((output->parent[0]));
-
-should return "100".
-
-## rule30_rev_string
-`rule30_rev_string` takes an array of bits, reverse-transforms it according to Wolfram's Rule 30, and returns 4 arrays of bits corresponding to 4 possible "parents".
-
-E.g. the following code
-
-    /* create and fill the child string, 5 bits long */
-    struct bitfield *input = str2bf("00100");
-    
-    /* transform */
-    struct parents *output = rule30_rev_string(input);
-    
-    /* print one of the four possible parents */
-    bfprint((output->parent[0]));
-
-should return "1110000".
-
-## rule30_ringify
-`rule30_ringify` takes an array of bits, checks if it can be treated as a ring of given length. On success it creates the resulting ring and returns code 0. On failure it creates an error message and returns code 1.
-
-E.g. the following code
-
-    /* create and fill a bit array, 5 bits long */
-    struct bitfield *input = str2bf("00100");
-    /* create an empty array, same length */
-    struct bitfield *output = bfnew_quick(4);
-    /* create a string for error message */
-    char *errmsg;
-    /* try to ringtify */
-    int result = rule30_ringify(input, output, &errmsg);
-    /* print the ring or the error message*/
-    if (result == 0) bfprint(output);
-    else printf("%s\n", errmsg);
-
-should return "0010".
-
-## rule30_parents_new()
-'rule30_parents_new` creates an empty parents structure.
-
-## rule30_parents_del()
-'rule30_parents_del` deletes a parents structure.
-
+Please, see "examples" directory for working examples.
 
 Licensing
 ---------

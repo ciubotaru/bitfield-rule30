@@ -1,10 +1,10 @@
 /**
- * File name: tests/test5.c
+ * File name: tests/test6.c
  * Project name: rule30, an implementation of  Wolfram's Rule 30 written in C
  * URL: https://github.com/ciubotaru/bitfield
  * Author: Vitalie Ciubotaru <vitalie at ciubotaru dot tk>
  * License: General Public License, version 3 or later
- * Date: February 1, 2016
+ * Date: February 15, 2016
 **/
 
 #include <stdio.h>
@@ -13,16 +13,14 @@
 #include <time.h>
 #include "rule30.h"
 
-/* Testing rule30_ringify() */
+/* Testing rule30_rev_ring */
 
 int main()
 {
 	srand((unsigned)time(NULL));
-	int i, j, k;		//counters
+	int i, j;		//counters
 	int len = 80;
-	int result;
-	int result_char;
-	char *msg = "Testing rule30_ringify()";
+	char *msg = "Testing rule30_rev_ring()";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
 	int dots = len - strlen(msg) - 6;	/* 6 is the length of pass/fail string */
@@ -43,34 +41,22 @@ int main()
 			else
 				input_char[j] = '0';
 		}
-//              printf("%s\n", input_char);
 		str2bf_ip(input_char, input);
-//              bfprint(input);
-		for (j = 1; j <= 40; j++) {	// no less than 1 and no more than half of the original string
-			strncpy(start_char, input_char, j);
-			strncpy(end_char, input_char + (len - j), j);
-			for (k = 0; k < j; k++) {
-				if (start_char[k] != end_char[k]) {
-					result_char = 1;	// i.e. not equal
-					k = j;	// stop comparing
-				} else
-					result_char = 0;	// assume equal and keep comparing
+		int count;
+		struct parents *output = rule30_rev_ring(input, &count);
+		if (count != 0) {
+			for (j = 0; j < count; j++) {
+				if (bfcmp(rule30_ring(output->parent[j]), input, NULL) != 0) {
+					printf("%s\n", failed);
+					free(input_char);
+					free(start_char);
+					free(end_char);
+					bfdel(input);
+					return 1;
+				}
 			}
-//                      printf("Char comparison result: %i\n", result_char);
-			struct bitfield *output = bfnew_quick(len - j);
-			result = rule30_ringify(input, output, NULL);
-			bfdel(output);
-//                      printf("rule30_ringify result: %i\n", result);
-			if (result_char != result) {
-				printf("%s\n", failed);
-				free(input_char);
-				free(start_char);
-				free(end_char);
-				bfdel(input);
-				return 1;
-			}
+			rule30_parents_del(output);
 		}
-
 	}
 	free(input_char);
 	free(start_char);

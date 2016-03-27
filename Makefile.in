@@ -10,7 +10,7 @@ AR=ar
 LIBS=-L. -I.
 CFLAGS=-Wall -O3
 export CFLAGS
-VERSION=0.0.1
+VERSION=0.4.0
 MANDIR=man
 TESTDIR=tests
 EXAMPLEDIR=examples
@@ -32,10 +32,12 @@ all: bitfield shared static
 
 bitfield:
 	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
-	echo 'Building local bitifield.'; \
+	if [ ! -d "bitfield" ] && [ ! -f "bitfield" ]; then echo "Local bitfield is required, but bitfield source tree is missing.\nPlease, provide 'bitfield' directory with source tree and type 'make' again."; exit 1; fi; \
+	echo 'Building local bitfield.'; \
 	$(MAKE) -C bitfield clean; \
 	cd bitfield; \
 	./configure --prefix=$(DESTDIR); \
+	cd ..; \
 	$(MAKE) -C bitfield all; \
 	else echo 'Using systemwide bitfield.'; fi
 
@@ -75,7 +77,7 @@ build-examples:
 run-examples:
 	$(MAKE) -C $(EXAMPLEDIR) run-examples
 
-install: install-lib install-header install-man
+install: install-lib install-header install-man install-bitfield
 
 install-lib:
 	mkdir -p $(DESTDIR)$(libdir)
@@ -92,7 +94,11 @@ install-header:
 install-man:
 	$(MAKE) -C $(MANDIR) install
 
-uninstall: uninstall-lib uninstall-header uninstall-man
+install-bitfield:
+	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
+	echo '* * *\nDo not forget to run "make install" in your bitfield source tree.'; fi
+
+uninstall: uninstall-lib uninstall-header uninstall-man uninstall-bitfield
 
 uninstall-lib:
 	for i in librule30.so.0 librule30.so librule30.so.$(VERSION) librule30.a; do if [ -e $(DESTDIR)$(libdir)/$$i ]; then rm -v $(DESTDIR)$(libdir)/$$i; fi; done
@@ -104,8 +110,12 @@ uninstall-header:
 uninstall-man:
 	$(MAKE) -C $(MANDIR) uninstall
 
+uninstall-bitfield:
+	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
+	echo '* * *\nDo not forget to run "make uninstall" in your bitfield source tree.'; fi
+
 clean:
-	rm -rvf *.a *.o *.so* rule30 populate
+	rm -rvf *.a *.o *.so*
 	$(MAKE) -C $(TESTDIR) clean
 	$(MAKE) -C $(EXAMPLEDIR) clean
 

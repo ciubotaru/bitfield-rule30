@@ -20,7 +20,6 @@ int main()
 	srand((unsigned)time(NULL));
 	int i, j;		//counters
 	int len = 80;
-	char *errmsg;
 	char *msg = "Testing rule30_rev_string()";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
@@ -39,9 +38,9 @@ int main()
 			else
 				bfclearbit(input, j);
 		}
-				struct parents *output = rule30_rev_string(input);
+		struct parents *output = rule30_rev_string(input);
 		check = rule30_string(output->parent[rand() % 4]);
-		if (bfcmp(input, check, &errmsg) != 0) {
+		if (bfcmp(input, check, NULL) != 0) {
 			printf("%s\n", failed);
 			rule30_parents_del(output);
 			return 1;

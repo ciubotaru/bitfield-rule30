@@ -1,10 +1,10 @@
 /**
- * File name: tests/test1.c
+ * File name: tests/test7.c
  * Project name: rule30, an implementation of  Wolfram's Rule 30 written in C
  * URL: https://github.com/ciubotaru/bitfield
  * Author: Vitalie Ciubotaru <vitalie at ciubotaru dot tk>
  * License: General Public License, version 3 or later
- * Date: February 1, 2016
+ * Date: February 15, 2016
 **/
 
 #include <stdio.h>
@@ -12,13 +12,14 @@
 #include <string.h>
 #include "rule30.h"
 
-/* Testing rule30_string() */
+/* Testing rule30_string_ip() */
 
 int main()
 {
 	int i;			//counter
 	int len = 80;
-	char *msg = "Testing rule30_string()";
+	char *errmsg;
+	char *msg = "Testing rule30_string_ip()";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
 	int dots = len - strlen(msg) - 6;	/* 6 is the length of pass/fail string */
@@ -42,9 +43,9 @@ int main()
 	for (i = 0; i < 50; i++) {
 		tmp = bfcat(empty, input);	// 1 + 80 = 81
 		input = bfcat(tmp, empty);	// 81 + 1 = 82
-		input = rule30_string(input);
+		rule30_string_ip(input);
 	}
-	if (bfcmp(input, check, NULL) != 0) {
+	if (bfcmp(input, check, &errmsg) != 0) {
 		printf("%s\n", failed);
 		return 1;
 	}
