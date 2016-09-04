@@ -12,7 +12,7 @@ endif
 tests: build-tests run-tests
 build-tests:
 	for i in $(TESTFILES); do \
-	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.c $(LIBS) -lrule30 $(BITFIELD_LIB) -lbitfield; done
+	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.c $(BITFIELD_LIB) $(LIBS) -lrule30 -lbitfield; done
 
 run-tests:
 	for i in $(TESTFILES); do \
