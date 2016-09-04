@@ -15,9 +15,9 @@ int main()
 		struct bitfield *output =
 		    rule30_string(triplet->parent[choice]);
 		printf("%i -> ", input);
-		bfprint(triplet->parent[choice]);
+		bfprint_lsb(triplet->parent[choice]);
 		printf(" -> ");
-		bfprint(output);
+		bfprint_lsb(output);
 		printf("\n");
 		rule30_parents_del(triplet);
 		bfdel(output);
