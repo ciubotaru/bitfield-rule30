@@ -1,5 +1,8 @@
 Changelog
 
+0.6.1
+* Fixed a missing-header bug when building with local bitfield source tree.
+
 0.6.0
 * Compatibility with bitfield-0.6.
 * Minor fixes.
