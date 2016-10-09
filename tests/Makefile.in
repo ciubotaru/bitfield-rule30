@@ -17,7 +17,7 @@ $(TESTFILES): %: %.c
 
 run-tests: $(TESTFILES)
 	for i in $(TESTFILES); do \
-	env LD_LIBRARY_PATH=.. ./$$i; \
+	env LD_LIBRARY_PATH=$(LD_LIBRARY_PATH) ./$$i; \
 	done
 
 clean:

@@ -43,13 +43,13 @@ bitfield:
 
 shared: librule30.so.$(VERSION)
 librule30.so.$(VERSION): rule30.c
-	$(CC) $(CFLAGS) -c -fpic rule30.c -o rule30-shared.o -I. $(LIBS)
+	$(CC) $(CFLAGS) -c -fpic rule30.c -o rule30-shared.o -I. $(LIBS) $(BITFIELD_LIB)
 	$(CC) $(CFLAGS) -shared -Wl,-soname,librule30.so.0 -o librule30.so.$(VERSION) rule30-shared.o $(LIBS)
 	for i in librule30.so.0 librule30.so; do ln -svf librule30.so.$(VERSION) $$i; done
 
 static: librule30.a
 librule30.a: rule30.c
-	$(CC) $(CFLAGS) -c rule30.c -o rule30-static.o $(LIBS)
+	$(CC) $(CFLAGS) -c rule30.c -o rule30-static.o $(LIBS)  $(BITFIELD_LIB)
 	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
 	$(AR) rcs librule30.a rule30-static.o bitfield/bf-static.o; \
 	else \
