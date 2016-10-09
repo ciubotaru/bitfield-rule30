@@ -9,19 +9,21 @@ else
 BITFIELD_LIB =
 endif
 
-tests: build-tests run-tests
-build-tests:
-	for i in $(TESTFILES); do \
-	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.c $(LIBS) -lrule30 $(BITFIELD_LIB) -lbitfield; done
+all: build-tests run-tests
 
-run-tests:
+build-tests: $(TESTFILES)
+$(TESTFILES): %: %.c
+	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $@ $< $(BITFIELD_LIB) $(LIBS) -lrule30 -lbitfield
+
+run-tests: $(TESTFILES)
 	for i in $(TESTFILES); do \
-#	echo -n "Running $$i... "; \
-#	( env LD_LIBRARY_PATH=$(./$$i > /dev/null 2>&1 && echo "Passed.")  || (echo "Failed with code $$?"); \
-	./$$i; \
+	env LD_LIBRARY_PATH=.. ./$$i; \
 	done
+
 clean:
 	rm -rvf $(TESTFILES)
 
 distclean:
 	rm Makefile
+
+.PHONY: all build-tests run-tests clean distclean

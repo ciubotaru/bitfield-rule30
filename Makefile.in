@@ -10,7 +10,7 @@ AR=ar
 LIBS=-L. -I.
 CFLAGS=-Wall -O3
 export CFLAGS
-VERSION=0.4.0
+VERSION=0.6.0
 MANDIR=man
 TESTDIR=tests
 EXAMPLEDIR=examples
@@ -36,38 +36,30 @@ bitfield:
 	echo 'Building local bitfield.'; \
 	$(MAKE) -C bitfield clean; \
 	cd bitfield; \
-	./configure --prefix=$(DESTDIR); \
+	./configure --prefix=$(prefix); \
 	cd ..; \
 	$(MAKE) -C bitfield all; \
 	else echo 'Using systemwide bitfield.'; fi
 
-shared: rule30.c
-	$(CC) $(CFLAGS) -c -fpic rule30.c -o rule30-shared.o -I. $(BITFIELD_LIB)
+shared: librule30.so.$(VERSION)
+librule30.so.$(VERSION): rule30.c
+	$(CC) $(CFLAGS) -c -fpic rule30.c -o rule30-shared.o -I. $(LIBS)
 	$(CC) $(CFLAGS) -shared -Wl,-soname,librule30.so.0 -o librule30.so.$(VERSION) rule30-shared.o $(LIBS)
-	for i in librule30.so.0 librule30.so; do if [ -e $$i ]; then rm -v $$i; fi; done
-	ln -sv librule30.so.$(VERSION) librule30.so.0
-	ln -sv librule30.so.$(VERSION) librule30.so
+	for i in librule30.so.0 librule30.so; do ln -svf librule30.so.$(VERSION) $$i; done
 
-static: rule30.c
-	$(CC) $(CFLAGS) -c rule30.c -o rule30-static.o $(BITFIELD_LIB)
+static: librule30.a
+librule30.a: rule30.c
+	$(CC) $(CFLAGS) -c rule30.c -o rule30-static.o $(LIBS)
 	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
 	$(AR) rcs librule30.a rule30-static.o bitfield/bf-static.o; \
 	else \
 	$(AR) rcs librule30.a rule30-static.o; \
 	fi
 
-#
-#test%: test%.c
-#	$(CC) $(CFLAGS) -o $@ $< -I. $(LIBS) -lrule30 -lrule30-char
-#
+test: check
 
-check: build-tests run-tests
-
-build-tests:
-	$(MAKE) -C $(TESTDIR) build-tests
-
-run-tests:
-	$(MAKE) -C $(TESTDIR) run-tests
+check:
+	$(MAKE) -C $(TESTDIR)
 
 examples: build-examples run-examples
 

@@ -1,5 +1,9 @@
 Changelog
 
+0.6.0
+* Compatibility with bitfield-0.6.
+* Minor fixes.
+
 0.4.0
 * Added rule30_rev_ring().
 * Changed rule30_ringify() syntaxt (the err msg argument is optional now).

@@ -1,7 +1,7 @@
 rule30
 ======
 
-Version 0.4.0 (March 20, 2016)
+Version 0.6.0 (September 11, 2016)
 
 rule30 is a collection of functions that implement Wolfram's 
 [Rule 30](http://en.wikipedia.org/wiki/Rule_30) cellular automaton and related 

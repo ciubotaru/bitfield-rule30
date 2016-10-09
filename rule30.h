@@ -7,12 +7,9 @@
  * Copyright 2015, 2016
 **/
 
-#include "config.h"
-#if (HAVE_BITFIELD_H == 1)
+#ifndef RULE30_H
+#define RULE30_H
 #include <bitfield.h>
-#else
-#include "bitfield/bitfield.h"
-#endif
 
 struct parents {
 	struct bitfield *parent[4];	// a pointer to an array of 4 struct bitfield
@@ -37,3 +34,5 @@ int rule30_ringify(const struct bitfield *input, struct bitfield *output, char *
 void rule30_string_ip(struct bitfield *instance);	/* transforms an array of bits by Wolfram's Rule 30 "in-place" */
 
 struct bitfield *rule30_string(const struct bitfield *input);	/* transforms an array of bits by Wolfram's Rule 30 */
+
+#endif
