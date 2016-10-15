@@ -22,18 +22,18 @@ AC_PROG_CC([gcc pcc icc])
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
-# Checks for libraries.
-# FIXME: Replace `main' with a function in `-lm':
-AC_CHECK_LIB(m, main)
-# FIXME: Replace `main' with a function in `-lrt':
-AC_CHECK_LIB(rt, main)
+# Check for system-wide bitfield
+AC_SEARCH_LIBS([bfnew], [bitfield], [AC_SUBST(HAVE_BITFIELD, 1)], [AC_SUBST(HAVE_BITFIELD, 0)], [])
 
-# FIXME: Replace `main' with a function in `-lrule30':
-#AC_CHECK_LIB(bitfield, main)
-if test "x$with_local_bitfield" = "xyes" ; then
-  AC_SUBST(HAVE_BITFIELD, 0)
-else AC_SEARCH_LIBS([bfnew], [bitfield], [AC_SUBST(HAVE_BITFIELD, 1)], [AC_SUBST(HAVE_BITFIELD, 0)], [])
-fi
+# Check if --with_local_bitfield was passed
+AS_IF([test "x$with_local_bitfield" = "xyes"],
+  # if yes, ignore system-wide bitfield
+  AC_SUBST(HAVE_BITFIELD, 0),
+  # otherwise check whether system-wide bitfield was found and building local bitfield was explicitly prohibited
+  AS_IF([test "x$with_local_bitfield" = "xno" && test "$HAVE_BITFIELD" = 0],
+    AC_MSG_ERROR([bitfield library not found]),
+  )
+)
 
 # Checks for header files.
 AC_CHECK_HEADERS(limits.h stdlib.h string.h bitfield.h)

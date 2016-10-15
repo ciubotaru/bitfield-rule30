@@ -7,26 +7,23 @@ libdir=@libdir@
 includedir=@includedir@
 mandir=@mandir@
 AR=ar
-LIBS=-L. -I.
 CFLAGS=-Wall -O3
 export CFLAGS
 VERSION=0.6.1
 MANDIR=man
 TESTDIR=tests
 EXAMPLEDIR=examples
-#LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:$(shell pwd)
 LD_LIBRARY_PATH := $(shell pwd):$(LD_LIBRARY_PATH)
 export LD_LIBRARY_PATH
 HAVE_BITFIELD=@HAVE_BITFIELD@
 export HAVE_BITFIELD
 ifeq ($(HAVE_BITFIELD), 0)
-BITFIELD_LIB = -L../bitfield -I../bitfield
-else
-BITFIELD_LIB =
+BITFIELD_LIB = -L../bitfield
+BITFIELD_INC = -I../bitfield
 endif
 PACKAGE_VERSION=@PACKAGE_VERSION@
 
-.PHONY: check man bitfield
+.PHONY: check man shared static install install-lib install-man install-header clean distclean uninstall uninstall-lib uninstall-man uninstall-header
 
 all: bitfield shared static
 
@@ -43,13 +40,13 @@ bitfield:
 
 shared: librule30.so.$(VERSION)
 librule30.so.$(VERSION): rule30.c
-	$(CC) $(CFLAGS) -c -fpic rule30.c -o rule30-shared.o -I. $(LIBS) $(BITFIELD_LIB)
-	$(CC) $(CFLAGS) -shared -Wl,-soname,librule30.so.0 -o librule30.so.$(VERSION) rule30-shared.o $(LIBS)
+	$(CC) $(CFLAGS) -c -fpic rule30.c -o rule30-shared.o -I. $(BITFIELD_INC)
+	$(CC) $(CFLAGS) -shared -Wl,-soname,librule30.so.0 -o librule30.so.$(VERSION) rule30-shared.o -I. $(BITFIELD_LIB) $(BITFIELD_INC) -lbitfield
 	for i in librule30.so.0 librule30.so; do ln -svf librule30.so.$(VERSION) $$i; done
 
 static: librule30.a
 librule30.a: rule30.c
-	$(CC) $(CFLAGS) -c rule30.c -o rule30-static.o $(LIBS)  $(BITFIELD_LIB)
+	$(CC) $(CFLAGS) -c rule30.c -o rule30-static.o -I. $(BITFIELD_INC)
 	@if [ $(HAVE_BITFIELD) -eq 0 ]; then \
 	$(AR) rcs librule30.a rule30-static.o bitfield/bf-static.o; \
 	else \

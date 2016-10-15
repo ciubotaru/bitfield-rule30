@@ -2741,95 +2741,9 @@ $as_echo "no" >&6; }
 fi
 
 
-# Checks for libraries.
-# FIXME: Replace `main' with a function in `-lm':
+# Check for system-wide bitfield
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lm" >&5
-$as_echo_n "checking for main in -lm... " >&6; }
-if ${ac_cv_lib_m_main+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lm  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-
-int
-main ()
-{
-return main ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_m_main=yes
-else
-  ac_cv_lib_m_main=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_m_main" >&5
-$as_echo "$ac_cv_lib_m_main" >&6; }
-if test "x$ac_cv_lib_m_main" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBM 1
-_ACEOF
-
-  LIBS="-lm $LIBS"
-
-fi
-
-# FIXME: Replace `main' with a function in `-lrt':
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lrt" >&5
-$as_echo_n "checking for main in -lrt... " >&6; }
-if ${ac_cv_lib_rt_main+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lrt  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-
-int
-main ()
-{
-return main ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_rt_main=yes
-else
-  ac_cv_lib_rt_main=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_rt_main" >&5
-$as_echo "$ac_cv_lib_rt_main" >&6; }
-if test "x$ac_cv_lib_rt_main" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBRT 1
-_ACEOF
-
-  LIBS="-lrt $LIBS"
-
-fi
-
-
-# FIXME: Replace `main' with a function in `-lrule30':
-#AC_CHECK_LIB(bitfield, main)
-if test "x$with_local_bitfield" = "xyes" ; then
-  HAVE_BITFIELD=0
-
-else { $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing bfnew" >&5
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing bfnew" >&5
 $as_echo_n "checking for library containing bfnew... " >&6; }
 if ${ac_cv_search_bfnew+:} false; then :
   $as_echo_n "(cached) " >&6
@@ -2887,6 +2801,18 @@ if test "$ac_res" != no; then :
 else
   HAVE_BITFIELD=0
 
+fi
+
+
+# Check if --with_local_bitfield was passed
+if test "x$with_local_bitfield" = "xyes"; then :
+  # if yes, ignore system-wide bitfield
+  HAVE_BITFIELD=0
+
+else
+  # otherwise check whether system-wide bitfield was found and building local bitfield was explicitly prohibited
+  if test "x$with_local_bitfield" = "xno" && test "$HAVE_BITFIELD" = 0; then :
+  as_fn_error $? "bitfield library not found" "$LINENO" 5
 fi
 
 fi
