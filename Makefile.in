@@ -108,7 +108,7 @@ clean:
 	$(MAKE) -C $(TESTDIR) clean
 	$(MAKE) -C $(EXAMPLEDIR) clean
 
-distclean:
+distclean: clean
 	rm config.log config.status config.h Makefile
 	$(MAKE) -C $(MANDIR) distclean
 	$(MAKE) -C $(TESTDIR) distclean

@@ -16,8 +16,6 @@ build-examples:
 
 run-examples:
 	for i in $(EXAMPLES); do \
-#	echo -n "Running $$i... "; \
-#	( env LD_LIBRARY_PATH=$(./$$i > /dev/null 2>&1 && echo "Passed.")  || (echo "Failed with code $$?"); \
 	./$$i; \
 	done
 clean:
@@ -26,3 +24,5 @@ clean:
 
 distclean:
 	rm Makefile
+
+.PHONY: examples build-examples run-examples clean distclean

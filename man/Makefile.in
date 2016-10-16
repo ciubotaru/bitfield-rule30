@@ -16,3 +16,5 @@ uninstall:
 
 distclean:
 	rm Makefile
+
+.PHONY: install uninstall distclean
