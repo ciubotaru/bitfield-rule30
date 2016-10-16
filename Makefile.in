@@ -23,7 +23,7 @@ BITFIELD_INC = -I../bitfield
 endif
 PACKAGE_VERSION=@PACKAGE_VERSION@
 
-.PHONY: check man shared static install install-lib install-man install-header clean distclean uninstall uninstall-lib uninstall-man uninstall-header
+.PHONY: bitfield check man shared static install install-lib install-man install-header clean distclean uninstall uninstall-lib uninstall-man uninstall-header
 
 all: bitfield shared static
 
