@@ -148,9 +148,13 @@ void rule30_ring_ip(struct bitfield *instance)
 {
 	struct bitfield *left = bfshift(instance, 1);
 	struct bitfield *right = bfshift(instance, -1);
-	bfcpy(bfxor(left, bfor(instance, right)), instance);
+	struct bitfield *or = bfor(instance, right);
+	struct bitfield *xor = bfxor(left, or);
+	bfcpy(xor, instance);
 	bfdel(left);
 	bfdel(right);
+	bfdel(or);
+	bfdel(xor);
 }
 
 struct bitfield *rule30_ring(const struct bitfield *input)
@@ -159,9 +163,13 @@ struct bitfield *rule30_ring(const struct bitfield *input)
 	struct bitfield *left = bfshift(input, 1);
 	struct bitfield *right = bfshift(input, -1);
 	struct bitfield *output = bfnew_quick(input_size);
-	bfcpy(bfxor(left, bfor(input, right)), output);
+	struct bitfield *or = bfor(input, right);
+	struct bitfield *xor = bfxor(left, or);
+	bfcpy(xor, output);
 	bfdel(left);
 	bfdel(right);
+	bfdel(or);
+	bfdel(xor);
 	return output;
 }
 

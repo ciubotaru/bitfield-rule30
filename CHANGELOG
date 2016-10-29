@@ -1,5 +1,10 @@
 Changelog
 
+0.6.1
+* Fixed a missing-header bug when building with local bitfield source tree.
+* Fixed memory leak in rule30_ring() and rule30_ring_ip().
+* Added some magic to makefiles ('make distclean' to also run 'make clean').
+
 0.6.0
 * Compatibility with bitfield-0.6.
 * Minor fixes.

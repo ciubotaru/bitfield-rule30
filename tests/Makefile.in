@@ -1,23 +1,20 @@
 TESTFILES=test1 test2 test3 test4 test5 test6 test7 test8
-#rule30_normalize rule30_rev_bit2 rule30_rev_string2 rule30_rev_8bit
-LIBS=-L.. -I..
 HAVE_BITFIELD = @HAVE_BITFIELD@
 ifeq ($(HAVE_BITFIELD), 0)
-BITFIELD_LIB = -L../bitfield -I../bitfield
+BITFIELD_LIB = -L../bitfield
+BITFIELD_INC = -I../bitfield
 LD_LIBRARY_PATH := $(shell pwd)/../bitfield:$(LD_LIBRARY_PATH)
-else
-BITFIELD_LIB =
 endif
 
 all: build-tests run-tests
 
 build-tests: $(TESTFILES)
 $(TESTFILES): %: %.c
-	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $@ $< $(BITFIELD_LIB) $(LIBS) -lrule30 -lbitfield
+	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $@ $< -L.. -I.. -lrule30 $(BITFIELD_LIB) $(BITFIELD_INC) -lbitfield
 
 run-tests: $(TESTFILES)
 	for i in $(TESTFILES); do \
-	env LD_LIBRARY_PATH=.. ./$$i; \
+	env LD_LIBRARY_PATH=$(LD_LIBRARY_PATH) ./$$i; \
 	done
 
 clean:
