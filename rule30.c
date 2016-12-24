@@ -63,11 +63,14 @@ struct parents *rule30_rev_ring(const struct bitfield *input, int *count)
 		    rule30_ringify(potential_parents->parent[i],
 				   potential_parent, NULL);
 		if (result == 0) {
-			bfcpy(bfshift(potential_parent, -1),
-			      parents->parent[(int)*count]);
+			struct bitfield *tmp = bfshift(potential_parent, -1);
+			bfcpy(tmp, parents->parent[(int)*count]);
+			bfdel(tmp);
 			(*count)++;
 		}
 	}
+	rule30_parents_del(potential_parents);
+	bfdel(potential_parent);
 	return parents;
 }
 
