@@ -241,10 +241,14 @@ void rule30_string_ip(struct bitfield *instance)
 	/* compute the child generation by Rule 30:
 	 * Child(i) = Parent(i-1) XOR ( Parent(i) OR Parent(i+1) )
 	 */
-	bfcpy(bfxor(left, bfor(center, right)), instance);
+	struct bitfield *or = bfor(center, right);
+	struct bitfield *xor = bfxor(left, or);
+	bfcpy(xor, instance);
 	bfdel(left);
 	bfdel(center);
 	bfdel(right);
+	bfdel(or);
+	bfdel(xor);
 }
 
 struct bitfield *rule30_string(const struct bitfield *input)
