@@ -111,11 +111,12 @@ struct parents *rule30_rev_string(const struct bitfield *input)
 		t_l = 0;
 		for (k = t_l; k < 4; k++) {	//4 substrings in temp_l
 			for (j = 0; j < 4; j++) {	//4 substrings in temp_r
-
-				if (bfcmp
-				    (bfsub(temp_l->parent[j], i, i + 2),
-				     bfsub(temp_1->parent[k], 0, 2),
-				     NULL) == 0) {
+				struct bitfield *sub1 = bfsub(temp_l->parent[j], i, i + 2);
+				struct bitfield *sub2 = bfsub(temp_1->parent[k], 0, 2);
+				int result = bfcmp(sub1, sub2, NULL);
+				bfdel(sub1);
+				bfdel(sub2);
+				if (result == 0) {
 					// add to potential ancestors, move values of next_bit to prev_bit and move to next bit
 					bfcpy(temp_l->parent[j],
 					      temp_r->parent[t_l]);
@@ -207,11 +208,16 @@ int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 	struct bitfield *end = bfsub(input, start_back, input_size);
 
 	/* check if the overlapping parts are identical */
-	if (bfcmp(front, end, NULL) != 0) {
+	int result = bfcmp(front, end, NULL);
+	bfdel(front);
+	bfdel(end);
+	if (result != 0) {
 		msg = "Can't ringify";
 		goto error;
 	}
-	bfcpy(bfsub(input, 0, output_size), output);
+	struct bitfield *sub = bfsub(input, 0, output_size);
+	bfcpy(sub, output);
+	bfdel(sub);
 	return 0;
  error:
 	if (errmsg) {
