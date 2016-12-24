@@ -1,5 +1,9 @@
 Changelog
 
+0.6.2
+* Fixed memory leaks in rule30_rev_ring(), rule30_ringify, rule30_string() and
+  rule30_string_ip().
+
 0.6.1
 * Fixed a missing-header bug when building with local bitfield source tree.
 * Fixed memory leak in rule30_ring() and rule30_ring_ip().
