@@ -18,7 +18,6 @@ int main()
 {
 	int i;			//counter
 	int len = 80;
-	char *errmsg;
 	char *msg = "Testing rule30_string_ip()";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
@@ -34,18 +33,23 @@ int main()
 	struct bitfield *check = bfnew(bfsize(input));
 	str2bf_ip(check_raw, check);
 	struct bitfield *empty = bfnew(1);
-	struct bitfield *tmp;
 	str2bf_ip("0", empty);
 	str2bf_ip(input_raw, input);
 
 //      bfprint(input);
 
 	for (i = 0; i < 50; i++) {
-		tmp = bfcat(empty, input);	// 1 + 80 = 81
-		input = bfcat(tmp, empty);	// 81 + 1 = 82
+		struct bitfield *tmp = bfcat(empty, input, empty);	// 1 + 80 + 1 = 82
+		bfresize(input, len+2);
+		bfcpy(tmp, input);
+		bfdel(tmp);
 		rule30_string_ip(input);
 	}
-	if (bfcmp(input, check, &errmsg) != 0) {
+	int result = bfcmp(input, check, NULL);
+	bfdel(empty);
+	bfdel(input);
+	bfdel(check);
+	if (result != 0) {
 		printf("%s\n", failed);
 		return 1;
 	}

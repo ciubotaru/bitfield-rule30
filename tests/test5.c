@@ -43,9 +43,7 @@ int main()
 			else
 				input_char[j] = '0';
 		}
-//              printf("%s\n", input_char);
 		str2bf_ip(input_char, input);
-//              bfprint(input);
 		for (j = 1; j <= 40; j++) {	// no less than 1 and no more than half of the original string
 			strncpy(start_char, input_char, j);
 			strncpy(end_char, input_char + (len - j), j);
@@ -56,11 +54,9 @@ int main()
 				} else
 					result_char = 0;	// assume equal and keep comparing
 			}
-//                      printf("Char comparison result: %i\n", result_char);
 			struct bitfield *output = bfnew_quick(len - j);
 			result = rule30_ringify(input, output, NULL);
 			bfdel(output);
-//                      printf("rule30_ringify result: %i\n", result);
 			if (result_char != result) {
 				printf("%s\n", failed);
 				free(input_char);

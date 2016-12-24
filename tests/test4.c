@@ -29,9 +29,8 @@ int main()
 		printf(".");
 
 	struct bitfield *input = bfnew_quick(len);
-	struct bitfield *check = bfnew_quick(len);
 
-	for (i = 0; i < 2; i++) {
+	for (i = 0; i < 50; i++) {
 		for (j = 0; j < len; j++) {
 			if (rand() % 2)
 				bfsetbit(input, j);
@@ -39,15 +38,16 @@ int main()
 				bfclearbit(input, j);
 		}
 		struct parents *output = rule30_rev_string(input);
-		check = rule30_string(output->parent[rand() % 4]);
-		if (bfcmp(input, check, NULL) != 0) {
+		struct bitfield *check = rule30_string(output->parent[rand() % 4]);
+		int result = bfcmp(input, check, NULL);
+		bfdel(check);
+		rule30_parents_del(output);
+		if (result != 0) {
 			printf("%s\n", failed);
-			rule30_parents_del(output);
 			return 1;
 		}
-		rule30_parents_del(output);
+		
 	}
-	bfdel(check);
 	bfdel(input);
 	printf("%s\n", passed);
 	return 0;

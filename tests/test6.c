@@ -46,7 +46,10 @@ int main()
 		struct parents *output = rule30_rev_ring(input, &count);
 		if (count != 0) {
 			for (j = 0; j < count; j++) {
-				if (bfcmp(rule30_ring(output->parent[j]), input, NULL) != 0) {
+				struct bitfield *ring = rule30_ring(output->parent[j]);
+				int result = bfcmp(ring, input, NULL);
+				bfdel(ring);
+				if (result != 0) {
 					printf("%s\n", failed);
 					free(input_char);
 					free(start_char);

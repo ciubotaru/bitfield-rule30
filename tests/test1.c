@@ -25,26 +25,29 @@ int main()
 	printf("%s", msg);
 	for (i = 0; i < dots; i++)
 		printf(".");
-	char input_raw[] =
+	char * input_raw =
 	    "00000000000000000000000000000000000000010000000000000000000000000000000000000000";
-	char check_raw[] =
+	char *check_raw =
 	    "10101010111010011001010000110000100011001000101011000000001100011011101110000101";
 	struct bitfield *input = bfnew(strlen(input_raw));
 	struct bitfield *check = bfnew(bfsize(input));
 	str2bf_ip(check_raw, check);
 	struct bitfield *empty = bfnew(1);
-	struct bitfield *tmp;
 	str2bf_ip("0", empty);
 	str2bf_ip(input_raw, input);
-
-//      bfprint(input);
-
 	for (i = 0; i < 50; i++) {
-		tmp = bfcat(empty, input);	// 1 + 80 = 81
-		input = bfcat(tmp, empty);	// 81 + 1 = 82
-		input = rule30_string(input);
+		struct bitfield *tmp = bfcat(empty, input, empty);	// 1 + 80 + 1 = 82
+		struct bitfield *tmp2 = rule30_string(tmp);
+		bfcpy(tmp2, input);
+		bfdel(tmp);
+		bfdel(tmp2);
 	}
-	if (bfcmp(input, check, NULL) != 0) {
+
+	int result = bfcmp(input, check, NULL);
+	bfdel(empty);
+	bfdel(input);
+	bfdel(check);
+	if (result != 0) {
 		printf("%s\n", failed);
 		return 1;
 	}

@@ -34,16 +34,18 @@ int main()
 	struct bitfield *check = bfnew_quick(len);
 	str2bf_ip(input_raw, input);
 	str2bf_ip(check_raw, check);
-
 	for (i = 0; i < 50; i++) {
-		input = rule30_ring(input);
+		struct bitfield *tmp = rule30_ring(input);
+		bfcpy(tmp, input);
+		bfdel(tmp);
 	}
-	if (bfcmp(input, check, NULL) != 0) {
+	int result = bfcmp(input, check, NULL);
+	bfdel(input);
+	bfdel(check);
+	if (result != 0) {
 		printf("%s\n", failed);
 		return 1;
 	}
-	bfdel(input);
-	bfdel(check);
 	printf("%s\n", passed);
 	return 0;
 }
