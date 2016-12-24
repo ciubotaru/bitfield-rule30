@@ -248,9 +248,13 @@ struct bitfield *rule30_string(const struct bitfield *input)
 	/* compute the child generation by Rule 30:
 	 * Child(i) = Parent(i-1) XOR ( Parent(i) OR Parent(i+1) )
 	 */
-	bfcpy(bfxor(left, bfor(center, right)), output);
+	struct bitfield *tmp1 = bfor(center, right);
+	struct bitfield *tmp2 = bfxor(left, tmp1);
+	bfcpy(tmp2, output);
 	bfdel(left);
 	bfdel(center);
 	bfdel(right);
+	bfdel(tmp1);
+	bfdel(tmp2);
 	return output;
 }
