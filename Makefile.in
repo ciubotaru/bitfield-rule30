@@ -23,7 +23,7 @@ BITFIELD_INC = -I../bitfield
 endif
 PACKAGE_VERSION=@PACKAGE_VERSION@
 
-.PHONY: bitfield check man shared static install install-lib install-man install-header clean distclean uninstall uninstall-lib uninstall-man uninstall-header
+.PHONY: bitfield test check man shared static install install-lib install-man install-header clean distclean uninstall uninstall-lib uninstall-man uninstall-header example examples
 
 all: bitfield shared static
 
@@ -58,13 +58,10 @@ test: check
 check:
 	$(MAKE) -C $(TESTDIR)
 
-examples: build-examples run-examples
+examples: example
 
-build-examples:
-	$(MAKE) -C $(EXAMPLEDIR) build-examples
-
-run-examples:
-	$(MAKE) -C $(EXAMPLEDIR) run-examples
+example:
+	$(MAKE) -C $(EXAMPLEDIR)
 
 install: install-lib install-header install-man install-bitfield
 

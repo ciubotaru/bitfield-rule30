@@ -8,11 +8,10 @@ else
 BITFIELD_LIB =
 endif
 
-examples: build-examples run-examples
-build-examples:
-	for i in $(EXAMPLES); do \
-	echo $$i; \
-	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $$i $$i.c $(LIBS) -lrule30 $(BITFIELD_LIB) -lbitfield; done
+all: build-examples run-examples
+build-examples: $(EXAMPLES)
+$(EXAMPLES): %: %.c
+	$(CC) $(CFLAGS) -Wl,-rpath=$(CURDIR) -o $@ $< $(LIBS) -lrule30 $(BITFIELD_LIB) -lbitfield
 
 run-examples:
 	for i in $(EXAMPLES); do \
@@ -25,4 +24,4 @@ clean:
 distclean:
 	rm Makefile
 
-.PHONY: examples build-examples run-examples clean distclean
+.PHONY: build-examples run-examples clean distclean
