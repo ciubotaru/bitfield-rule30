@@ -231,26 +231,6 @@ int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 	return 1;
 }
 
-void rule30_string_ip(struct bitfield *instance)
-{
-	int size = bfsize(instance);
-	struct bitfield *left = bfsub(instance, 0, size - 2);
-	struct bitfield *center = bfsub(instance, 1, size - 1);
-	struct bitfield *right = bfsub(instance, 2, size);
-	bfresize(instance, size - 2);
-	/* compute the child generation by Rule 30:
-	 * Child(i) = Parent(i-1) XOR ( Parent(i) OR Parent(i+1) )
-	 */
-	struct bitfield *or = bfor(center, right);
-	struct bitfield *xor = bfxor(left, or);
-	bfcpy(xor, instance);
-	bfdel(left);
-	bfdel(center);
-	bfdel(right);
-	bfdel(or);
-	bfdel(xor);
-}
-
 inline static void eca_1(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
 	struct bitfield *tmp1 = bfor(left, center);
@@ -310,6 +290,42 @@ inline static void eca_30(const struct bitfield *left, const struct bitfield *ce
 	bfdel(tmp1);
 	bfdel(tmp2);
 }
+
+void eca_string_ip(struct bitfield *instance, const unsigned int wolfram_code)
+{
+	int size = bfsize(instance);
+	struct bitfield *left = bfsub(instance, 0, size - 2);
+	struct bitfield *center = bfsub(instance, 1, size - 1);
+	struct bitfield *right = bfsub(instance, 2, size);
+	bfresize(instance, size - 2);
+	switch(wolfram_code) {
+		case 1:
+			eca_1(left, center, right, instance);
+			break;
+		case 2:
+			eca_2(left, center, right, instance);
+			break;
+		case 3:
+			eca_3(left, center, right, instance);
+			break;
+		case 4:
+			eca_4(left, center, right, instance);
+			break;
+		case 5:
+			eca_5(left, center, right, instance);
+			break;
+		case 30:
+			eca_30(left, center, right, instance);
+			break;
+		default:
+			break;
+	}
+	bfdel(left);
+	bfdel(center);
+	bfdel(right);
+}
+
+
 
 struct bitfield *eca_string(const struct bitfield *input, const unsigned int wolfram_code)
 {

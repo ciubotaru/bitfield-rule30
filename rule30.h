@@ -31,7 +31,7 @@ struct bitfield *rule30_ring(const struct bitfield *input);	/* treats the input 
 
 int rule30_ringify(const struct bitfield *input, struct bitfield *output, char **errmsg);	/* tests if an array of bits can be treated as a ring of given length and returns the resulting ring */
 
-void rule30_string_ip(struct bitfield *instance);	/* transforms an array of bits by Wolfram's Rule 30 "in-place" */
+void eca_string_ip(struct bitfield *instance, const unsigned int wolfram_code);	/* transforms an array of bits as an elementary cellular automaton given by Wolfram's code "in-place" */
 
 struct bitfield *eca_string(const struct bitfield *input, const unsigned int wolfram_code);	/* transforms an array of bits as an elementary cellular automaton given by Wolfram's code */
 

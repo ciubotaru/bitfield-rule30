@@ -12,13 +12,13 @@
 #include <string.h>
 #include "rule30.h"
 
-/* Testing rule30_string_ip() */
+/* Testing eca_string_ip() */
 
 int main()
 {
 	int i;			//counter
 	int len = 80;
-	char *msg = "Testing rule30_string_ip()";
+	char *msg = "Testing eca_string_ip() for Rule 30";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
 	int dots = len - strlen(msg) - 6;	/* 6 is the length of pass/fail string */
@@ -43,7 +43,7 @@ int main()
 		bfresize(input, len+2);
 		bfcpy(tmp, input);
 		bfdel(tmp);
-		rule30_string_ip(input);
+		eca_string_ip(input, 30);
 	}
 	int result = bfcmp(input, check, NULL);
 	bfdel(empty);
