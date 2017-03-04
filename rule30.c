@@ -233,7 +233,7 @@ int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 
 inline static void eca_0(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+	bfclearall(output);
 }
 
 inline static void eca_1(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -566,7 +566,1132 @@ inline static void eca_30(const struct bitfield *left, const struct bitfield *ce
 	bfdel(tmp2);
 }
 
-static void (*eca[31])() = {
+inline static void eca_31(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_32(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_33(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_34(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_35(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_36(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_37(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_38(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_39(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_40(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_41(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_42(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_43(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_44(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_45(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_46(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_47(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_48(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_49(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_50(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_51(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_52(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_53(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_54(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_55(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_56(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_57(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_58(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_59(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_60(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_61(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_62(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_63(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_64(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_65(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_66(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_67(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_68(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_69(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_70(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_71(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_72(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_73(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_74(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_75(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_76(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_77(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_78(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_79(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_80(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_81(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_82(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_83(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_84(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_85(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_86(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_87(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_88(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_89(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_90(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_91(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_92(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_93(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_94(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_95(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_96(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_97(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_98(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_99(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_100(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_101(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_102(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_103(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_104(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_105(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_106(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_107(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_108(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_109(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_110(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_111(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_112(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_113(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_114(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_115(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_116(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_117(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_118(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_119(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_120(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_121(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_122(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_123(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_124(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_125(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_126(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_127(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_128(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_129(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_130(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_131(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_132(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_133(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_134(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_135(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_136(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_137(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_138(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_139(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_140(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_141(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_142(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_143(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_144(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_145(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_146(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_147(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_148(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_149(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_150(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_151(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_152(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_153(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_154(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_155(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_156(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_157(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_158(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_159(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_160(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_161(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_162(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_163(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_164(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_165(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_166(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_167(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_168(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_169(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_170(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_171(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_172(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_173(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_174(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_175(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_176(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_177(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_178(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_179(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_180(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_181(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_182(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_183(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_184(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_185(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_186(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_187(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_188(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_189(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_190(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_191(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_192(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_193(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_194(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_195(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_196(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_197(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_198(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_199(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_200(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_201(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_202(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_203(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_204(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_205(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_206(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_207(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_208(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_209(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_210(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_211(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_212(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_213(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_214(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_215(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_216(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_217(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_218(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_219(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_220(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_221(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_222(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_223(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_224(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_225(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_226(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_227(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_228(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_229(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_230(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_231(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_232(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_233(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_234(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_235(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_236(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_237(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_238(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_239(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_240(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_241(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_242(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_243(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_244(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_245(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_246(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_247(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_248(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_249(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_250(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_251(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_252(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_253(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_254(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+inline static void eca_255(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
+static void (*eca[256])() = {
 	&eca_0,
 	&eca_1,
 	&eca_2,
@@ -597,7 +1722,232 @@ static void (*eca[31])() = {
 	&eca_27,
 	&eca_28,
 	&eca_29,
-	&eca_30
+	&eca_30,
+	&eca_31,
+	&eca_32,
+	&eca_33,
+	&eca_34,
+	&eca_35,
+	&eca_36,
+	&eca_37,
+	&eca_38,
+	&eca_39,
+	&eca_40,
+	&eca_41,
+	&eca_42,
+	&eca_43,
+	&eca_44,
+	&eca_45,
+	&eca_46,
+	&eca_47,
+	&eca_48,
+	&eca_49,
+	&eca_50,
+	&eca_51,
+	&eca_52,
+	&eca_52,
+	&eca_54,
+	&eca_55,
+	&eca_56,
+	&eca_57,
+	&eca_58,
+	&eca_59,
+	&eca_60,
+	&eca_61,
+	&eca_62,
+	&eca_63,
+	&eca_64,
+	&eca_65,
+	&eca_66,
+	&eca_67,
+	&eca_68,
+	&eca_69,
+	&eca_70,
+	&eca_71,
+	&eca_72,
+	&eca_73,
+	&eca_74,
+	&eca_75,
+	&eca_76,
+	&eca_77,
+	&eca_78,
+	&eca_79,
+	&eca_80,
+	&eca_81,
+	&eca_82,
+	&eca_83,
+	&eca_84,
+	&eca_85,
+	&eca_86,
+	&eca_87,
+	&eca_88,
+	&eca_89,
+	&eca_90,
+	&eca_91,
+	&eca_92,
+	&eca_93,
+	&eca_94,
+	&eca_95,
+	&eca_96,
+	&eca_97,
+	&eca_98,
+	&eca_99,
+	&eca_100,
+	&eca_101,
+	&eca_102,
+	&eca_103,
+	&eca_104,
+	&eca_105,
+	&eca_106,
+	&eca_107,
+	&eca_108,
+	&eca_109,
+	&eca_110,
+	&eca_111,
+	&eca_112,
+	&eca_113,
+	&eca_114,
+	&eca_115,
+	&eca_116,
+	&eca_117,
+	&eca_118,
+	&eca_119,
+	&eca_120,
+	&eca_121,
+	&eca_122,
+	&eca_123,
+	&eca_124,
+	&eca_125,
+	&eca_126,
+	&eca_127,
+	&eca_128,
+	&eca_129,
+	&eca_130,
+	&eca_131,
+	&eca_132,
+	&eca_133,
+	&eca_134,
+	&eca_135,
+	&eca_136,
+	&eca_137,
+	&eca_138,
+	&eca_139,
+	&eca_140,
+	&eca_141,
+	&eca_142,
+	&eca_143,
+	&eca_144,
+	&eca_145,
+	&eca_146,
+	&eca_147,
+	&eca_148,
+	&eca_149,
+	&eca_150,
+	&eca_151,
+	&eca_152,
+	&eca_152,
+	&eca_154,
+	&eca_155,
+	&eca_156,
+	&eca_157,
+	&eca_158,
+	&eca_159,
+	&eca_160,
+	&eca_161,
+	&eca_162,
+	&eca_163,
+	&eca_164,
+	&eca_165,
+	&eca_166,
+	&eca_167,
+	&eca_168,
+	&eca_169,
+	&eca_170,
+	&eca_171,
+	&eca_172,
+	&eca_173,
+	&eca_174,
+	&eca_175,
+	&eca_176,
+	&eca_177,
+	&eca_178,
+	&eca_179,
+	&eca_180,
+	&eca_181,
+	&eca_182,
+	&eca_183,
+	&eca_184,
+	&eca_185,
+	&eca_186,
+	&eca_187,
+	&eca_188,
+	&eca_189,
+	&eca_190,
+	&eca_191,
+	&eca_192,
+	&eca_193,
+	&eca_194,
+	&eca_195,
+	&eca_196,
+	&eca_197,
+	&eca_198,
+	&eca_199,
+	&eca_200,
+	&eca_201,
+	&eca_202,
+	&eca_203,
+	&eca_204,
+	&eca_205,
+	&eca_206,
+	&eca_207,
+	&eca_208,
+	&eca_209,
+	&eca_210,
+	&eca_211,
+	&eca_212,
+	&eca_213,
+	&eca_214,
+	&eca_215,
+	&eca_216,
+	&eca_217,
+	&eca_218,
+	&eca_219,
+	&eca_220,
+	&eca_221,
+	&eca_222,
+	&eca_223,
+	&eca_224,
+	&eca_225,
+	&eca_226,
+	&eca_227,
+	&eca_228,
+	&eca_229,
+	&eca_230,
+	&eca_231,
+	&eca_232,
+	&eca_233,
+	&eca_234,
+	&eca_235,
+	&eca_236,
+	&eca_237,
+	&eca_238,
+	&eca_239,
+	&eca_240,
+	&eca_241,
+	&eca_242,
+	&eca_243,
+	&eca_244,
+	&eca_245,
+	&eca_246,
+	&eca_247,
+	&eca_248,
+	&eca_249,
+	&eca_250,
+	&eca_251,
+	&eca_252,
+	&eca_252,
+	&eca_254,
+	&eca_255
 };
 
 void eca_string_ip(struct bitfield *instance, const unsigned int wolfram_code)
