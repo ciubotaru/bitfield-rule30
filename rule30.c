@@ -231,6 +231,11 @@ int rule30_ringify(const struct bitfield *input, struct bitfield *output,
 	return 1;
 }
 
+inline static void eca_0(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+
+}
+
 inline static void eca_1(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
 	struct bitfield *tmp1 = bfor(left, center);
@@ -561,6 +566,40 @@ inline static void eca_30(const struct bitfield *left, const struct bitfield *ce
 	bfdel(tmp2);
 }
 
+static void (*eca[31])() = {
+	&eca_0,
+	&eca_1,
+	&eca_2,
+	&eca_3,
+	&eca_4,
+	&eca_5,
+	&eca_6,
+	&eca_7,
+	&eca_8,
+	&eca_9,
+	&eca_10,
+	&eca_11,
+	&eca_12,
+	&eca_13,
+	&eca_14,
+	&eca_15,
+	&eca_16,
+	&eca_17,
+	&eca_18,
+	&eca_19,
+	&eca_20,
+	&eca_21,
+	&eca_22,
+	&eca_23,
+	&eca_24,
+	&eca_25,
+	&eca_26,
+	&eca_27,
+	&eca_28,
+	&eca_29,
+	&eca_30
+};
+
 void eca_string_ip(struct bitfield *instance, const unsigned int wolfram_code)
 {
 	int size = bfsize(instance);
@@ -568,100 +607,7 @@ void eca_string_ip(struct bitfield *instance, const unsigned int wolfram_code)
 	struct bitfield *center = bfsub(instance, 1, size - 1);
 	struct bitfield *right = bfsub(instance, 2, size);
 	bfresize(instance, size - 2);
-	switch(wolfram_code) {
-		case 1:
-			eca_1(left, center, right, instance);
-			break;
-		case 2:
-			eca_2(left, center, right, instance);
-			break;
-		case 3:
-			eca_3(left, center, right, instance);
-			break;
-		case 4:
-			eca_4(left, center, right, instance);
-			break;
-		case 5:
-			eca_5(left, center, right, instance);
-			break;
-		case 6:
-			eca_6(left, center, right, instance);
-			break;
-		case 7:
-			eca_7(left, center, right, instance);
-			break;
-		case 8:
-			eca_8(left, center, right, instance);
-			break;
-		case 9:
-			eca_9(left, center, right, instance);
-			break;
-		case 10:
-			eca_10(left, center, right, instance);
-			break;
-		case 11:
-			eca_11(left, center, right, instance);
-			break;
-		case 12:
-			eca_12(left, center, right, instance);
-			break;
-		case 13:
-			eca_13(left, center, right, instance);
-			break;
-		case 14:
-			eca_14(left, center, right, instance);
-			break;
-		case 15:
-			eca_15(left, center, right, instance);
-			break;
-		case 16:
-			eca_16(left, center, right, instance);
-			break;
-		case 17:
-			eca_17(left, center, right, instance);
-			break;
-		case 18:
-			eca_18(left, center, right, instance);
-			break;
-		case 19:
-			eca_19(left, center, right, instance);
-			break;
-		case 20:
-			eca_20(left, center, right, instance);
-			break;
-		case 21:
-			eca_21(left, center, right, instance);
-			break;
-		case 22:
-			eca_22(left, center, right, instance);
-			break;
-		case 23:
-			eca_23(left, center, right, instance);
-			break;
-		case 24:
-			eca_24(left, center, right, instance);
-			break;
-		case 25:
-			eca_25(left, center, right, instance);
-			break;
-		case 26:
-			eca_26(left, center, right, instance);
-			break;
-		case 27:
-			eca_27(left, center, right, instance);
-			break;
-		case 28:
-			eca_28(left, center, right, instance);
-			break;
-		case 29:
-			eca_29(left, center, right, instance);
-			break;
-		case 30:
-			eca_30(left, center, right, instance);
-			break;
-		default:
-			break;
-	}
+	eca[wolfram_code](left, center, right, instance);
 	bfdel(left);
 	bfdel(center);
 	bfdel(right);
@@ -676,99 +622,6 @@ struct bitfield *eca_string(const struct bitfield *input, const unsigned int wol
 	struct bitfield *center = bfsub(input, 1, input_size - 1);
 	struct bitfield *right = bfsub(input, 2, input_size);
 	struct bitfield *output = bfnew_quick(input_size - 2);
-	switch(wolfram_code) {
-		case 1:
-			eca_1(left, center, right, output);
-			break;
-		case 2:
-			eca_2(left, center, right, output);
-			break;
-		case 3:
-			eca_3(left, center, right, output);
-			break;
-		case 4:
-			eca_4(left, center, right, output);
-			break;
-		case 5:
-			eca_5(left, center, right, output);
-			break;
-		case 6:
-			eca_6(left, center, right, output);
-			break;
-		case 7:
-			eca_7(left, center, right, output);
-			break;
-		case 8:
-			eca_8(left, center, right, output);
-			break;
-		case 9:
-			eca_9(left, center, right, output);
-			break;
-		case 10:
-			eca_10(left, center, right, output);
-			break;
-		case 11:
-			eca_11(left, center, right, output);
-			break;
-		case 12:
-			eca_12(left, center, right, output);
-			break;
-		case 13:
-			eca_13(left, center, right, output);
-			break;
-		case 14:
-			eca_14(left, center, right, output);
-			break;
-		case 15:
-			eca_15(left, center, right, output);
-			break;
-		case 16:
-			eca_16(left, center, right, output);
-			break;
-		case 17:
-			eca_17(left, center, right, output);
-			break;
-		case 18:
-			eca_18(left, center, right, output);
-			break;
-		case 19:
-			eca_19(left, center, right, output);
-			break;
-		case 20:
-			eca_20(left, center, right, output);
-			break;
-		case 21:
-			eca_21(left, center, right, output);
-			break;
-		case 22:
-			eca_22(left, center, right, output);
-			break;
-		case 23:
-			eca_23(left, center, right, output);
-			break;
-		case 24:
-			eca_24(left, center, right, output);
-			break;
-		case 25:
-			eca_25(left, center, right, output);
-			break;
-		case 26:
-			eca_26(left, center, right, output);
-			break;
-		case 27:
-			eca_27(left, center, right, output);
-			break;
-		case 28:
-			eca_28(left, center, right, output);
-			break;
-		case 29:
-			eca_29(left, center, right, output);
-			break;
-		case 30:
-			eca_30(left, center, right, output);
-			break;
-		default:
-			break;
-	}
+	eca[wolfram_code](left, center, right, output);
 	return output;
 }
