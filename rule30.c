@@ -251,6 +251,17 @@ void rule30_string_ip(struct bitfield *instance)
 	bfdel(xor);
 }
 
+inline static void eca_2(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+	struct bitfield *tmp1 = bfor(left, center);
+	struct bitfield *tmp2 = bfnot(tmp1);
+	struct bitfield *tmp3 = bfand(right, tmp2);
+	bfcpy(tmp3, output);
+	bfdel(tmp1);
+	bfdel(tmp2);
+	bfdel(tmp3);
+}
+
 inline static void eca_30(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
 	struct bitfield *tmp1 = bfor(center, right);
@@ -268,6 +279,9 @@ struct bitfield *eca_string(const struct bitfield *input, const unsigned int wol
 	struct bitfield *right = bfsub(input, 2, input_size);
 	struct bitfield *output = bfnew_quick(input_size - 2);
 	switch(wolfram_code) {
+		case 2:
+			eca_2(left, center, right, output);
+			break;
 		case 30:
 			eca_30(left, center, right, output);
 			break;
