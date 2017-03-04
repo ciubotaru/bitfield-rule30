@@ -315,6 +315,17 @@ inline static void eca_8(const struct bitfield *left, const struct bitfield *cen
 	bfdel(tmp3);
 }
 
+inline static void eca_9(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+	struct bitfield *tmp1 = bfxor(center, right);
+	struct bitfield *tmp2 = bfor(left, tmp1);
+	struct bitfield *tmp3 = bfnot(tmp2);
+	bfcpy(tmp3, output);
+	bfdel(tmp1);
+	bfdel(tmp2);
+	bfdel(tmp3);
+}
+
 inline static void eca_30(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
 	struct bitfield *tmp1 = bfor(center, right);
@@ -355,6 +366,9 @@ void eca_string_ip(struct bitfield *instance, const unsigned int wolfram_code)
 			break;
 		case 8:
 			eca_8(left, center, right, instance);
+			break;
+		case 9:
+			eca_9(left, center, right, instance);
 			break;
 		case 30:
 			eca_30(left, center, right, instance);
@@ -400,6 +414,9 @@ struct bitfield *eca_string(const struct bitfield *input, const unsigned int wol
 			break;
 		case 8:
 			eca_8(left, center, right, output);
+			break;
+		case 9:
+			eca_9(left, center, right, output);
 			break;
 		case 30:
 			eca_30(left, center, right, output);
