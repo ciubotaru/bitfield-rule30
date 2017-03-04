@@ -251,23 +251,28 @@ void rule30_string_ip(struct bitfield *instance)
 	bfdel(xor);
 }
 
-struct bitfield *rule30_string(const struct bitfield *input)
+inline static void eca_30(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
+{
+	struct bitfield *tmp1 = bfor(center, right);
+	struct bitfield *tmp2 = bfxor(left, tmp1);
+	bfcpy(tmp2, output);
+	bfdel(tmp1);
+	bfdel(tmp2);
+}
+
+struct bitfield *eca_string(const struct bitfield *input, const unsigned int wolfram_code)
 {
 	int input_size = bfsize(input);
 	struct bitfield *left = bfsub(input, 0, input_size - 2);
 	struct bitfield *center = bfsub(input, 1, input_size - 1);
 	struct bitfield *right = bfsub(input, 2, input_size);
 	struct bitfield *output = bfnew_quick(input_size - 2);
-	/* compute the child generation by Rule 30:
-	 * Child(i) = Parent(i-1) XOR ( Parent(i) OR Parent(i+1) )
-	 */
-	struct bitfield *tmp1 = bfor(center, right);
-	struct bitfield *tmp2 = bfxor(left, tmp1);
-	bfcpy(tmp2, output);
-	bfdel(left);
-	bfdel(center);
-	bfdel(right);
-	bfdel(tmp1);
-	bfdel(tmp2);
+	switch(wolfram_code) {
+		case 30:
+			eca_30(left, center, right, output);
+			break;
+		default:
+			break;
+	}
 	return output;
 }

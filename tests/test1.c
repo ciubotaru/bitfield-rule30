@@ -12,13 +12,13 @@
 #include <string.h>
 #include "rule30.h"
 
-/* Testing rule30_string() */
+/* Testing eca_string() */
 
 int main()
 {
 	int i;			//counter
 	int len = 80;
-	char *msg = "Testing rule30_string()";
+	char *msg = "Testing eca_string() for Rule 30";
 	char *failed = "[FAIL]";
 	char *passed = "[PASS]";
 	int dots = len - strlen(msg) - 6;	/* 6 is the length of pass/fail string */
@@ -37,7 +37,7 @@ int main()
 	str2bf_ip(input_raw, input);
 	for (i = 0; i < 50; i++) {
 		struct bitfield *tmp = bfcat(empty, input, empty);	// 1 + 80 + 1 = 82
-		struct bitfield *tmp2 = rule30_string(tmp);
+		struct bitfield *tmp2 = eca_string(tmp, 30);
 		bfcpy(tmp2, input);
 		bfdel(tmp);
 		bfdel(tmp2);

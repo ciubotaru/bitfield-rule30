@@ -34,7 +34,7 @@ int main()
 		struct parents *triplet = rule30_rev_bit(input);
 		int choice = rand() % 4;
 		struct bitfield *output =
-		    rule30_string(triplet->parent[choice]);
+		    eca_string(triplet->parent[choice], 30);
 		rule30_parents_del(triplet);
 		if (bfgetbit(output, 0) != input) {
 			printf("%s\n", failed);

@@ -38,7 +38,7 @@ int main()
 				bfclearbit(input, j);
 		}
 		struct parents *output = rule30_rev_string(input);
-		struct bitfield *check = rule30_string(output->parent[rand() % 4]);
+		struct bitfield *check = eca_string(output->parent[rand() % 4], 30);
 		int result = bfcmp(input, check, NULL);
 		bfdel(check);
 		rule30_parents_del(output);
