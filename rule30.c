@@ -904,7 +904,16 @@ inline static void eca_60(const struct bitfield *left, const struct bitfield *ce
 
 inline static void eca_61(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+	/* (NOT (1 OR 3)) OR (1 XOR 2) */
+	struct bitfield *tmp1 = bfor(left, right);
+	struct bitfield *tmp2 = bfnot(tmp1);
+	struct bitfield *tmp3 = bfxor(left, center);
+	struct bitfield *tmp4 = bfor(tmp2, tmp3);
+	bfcpy(tmp4, output);
+	bfdel(tmp1);
+	bfdel(tmp2);
+	bfdel(tmp3);
+	bfdel(tmp4);
 }
 
 inline static void eca_62(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -934,7 +943,7 @@ inline static void eca_66(const struct bitfield *left, const struct bitfield *ce
 
 inline static void eca_67(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+/* ¬((r∧p)∨(p⊕q)) */
 }
 
 inline static void eca_68(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -959,7 +968,7 @@ inline static void eca_71(const struct bitfield *left, const struct bitfield *ce
 
 inline static void eca_72(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+/* q∧(p⊕r) */
 }
 
 inline static void eca_73(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1054,7 +1063,7 @@ inline static void eca_90(const struct bitfield *left, const struct bitfield *ce
 
 inline static void eca_91(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+/* r⊕(p∨¬(r∨q)) */
 }
 
 inline static void eca_92(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1104,7 +1113,7 @@ inline static void eca_100(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_101(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+/* r⊕(¬p∨q) */
 }
 
 inline static void eca_102(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1114,12 +1123,12 @@ inline static void eca_102(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_103(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+/* ¬(r ∨p)∨(q⊕r) */
 }
 
 inline static void eca_104(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//(p∧q)⊕(r∧(q∨p))
 }
 
 inline static void eca_105(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1134,7 +1143,7 @@ inline static void eca_106(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_107(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//(p∧q)⊕(r ∨ ¬(q∨p))
 }
 
 inline static void eca_108(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1144,12 +1153,12 @@ inline static void eca_108(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_109(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//r⊕¬((r∨p) ∧ (p⊕q))
 }
 
 inline static void eca_110(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//(¬p ∧r) ∨ (q⊕r)
 }
 
 inline static void eca_111(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1204,22 +1213,22 @@ inline static void eca_120(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_121(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//r⊕¬((r∨q) ∧ (p⊕q))
 }
 
 inline static void eca_122(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//(¬q∧r)∨(p⊕r)
 }
 
 inline static void eca_123(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬q ∨(p⊕r)
 }
 
 inline static void eca_124(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//(¬r ∧q) ∨ (p⊕q)
 }
 
 inline static void eca_125(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1254,7 +1263,7 @@ inline static void eca_130(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_131(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬(p⊕q) ∧(r∨¬p)
 }
 
 inline static void eca_132(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1264,7 +1273,7 @@ inline static void eca_132(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_133(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬(p⊕r)∧(q∨¬p)
 }
 
 inline static void eca_134(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1289,7 +1298,7 @@ inline static void eca_137(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_138(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//r∧(¬p∨q)
 }
 
 inline static void eca_139(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1324,7 +1333,7 @@ inline static void eca_144(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_145(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬((r∧¬p)∨(q ⊕r))
 }
 
 inline static void eca_146(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1354,7 +1363,7 @@ inline static void eca_150(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_151(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//(p∧q)⊕¬(r∧(q∨p))
 }
 
 inline static void eca_152(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1374,7 +1383,7 @@ inline static void eca_154(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_155(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬((q⊕r)∧(q∨p))
 }
 
 inline static void eca_156(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1384,7 +1393,7 @@ inline static void eca_156(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_157(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬ ((p∨r) ∧ (q⊕r))
 }
 
 inline static void eca_158(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1434,7 +1443,7 @@ inline static void eca_166(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_167(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬((p⊕r)∧(q∨p)
 }
 
 inline static void eca_168(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1504,7 +1513,7 @@ inline static void eca_180(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_181(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬((p⊕r)∧(r∨q))
 }
 
 inline static void eca_182(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1514,12 +1523,12 @@ inline static void eca_182(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_183(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬(q ∧ (p⊕r))
 }
 
 inline static void eca_184(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//p⊕(q∧(p⊕r))
 }
 
 inline static void eca_185(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1539,7 +1548,7 @@ inline static void eca_187(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_188(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//(r∧q)∨(p⊕q)
 }
 
 inline static void eca_189(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1554,7 +1563,7 @@ inline static void eca_190(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_191(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬(q∧p)∨r
 }
 
 inline static void eca_192(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1594,7 +1603,7 @@ inline static void eca_198(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_199(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬((p⊕q)∧(r∨p))
 }
 
 inline static void eca_200(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1634,7 +1643,7 @@ inline static void eca_206(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_207(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬p∨q
 }
 
 inline static void eca_208(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1654,7 +1663,7 @@ inline static void eca_210(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_211(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬((p⊕q) ∧ (r∨q))
 }
 
 inline static void eca_212(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1689,7 +1698,7 @@ inline static void eca_217(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_218(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//(r∧q)∨(p⊕r)
 }
 
 inline static void eca_219(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1709,12 +1718,12 @@ inline static void eca_221(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_222(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//q∨(p⊕r)
 }
 
 inline static void eca_223(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬(p∧r)∨q
 }
 
 inline static void eca_224(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1729,7 +1738,7 @@ inline static void eca_225(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_226(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//r⊕(q∧(p⊕r))
 }
 
 inline static void eca_227(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1749,7 +1758,7 @@ inline static void eca_229(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_230(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//(p∧q)∨(q⊕r)
 }
 
 inline static void eca_231(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1764,7 +1773,7 @@ inline static void eca_232(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_233(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//r⊕¬((r∧q)∨(p⊕q))
 }
 
 inline static void eca_234(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
@@ -1834,7 +1843,7 @@ inline static void eca_246(const struct bitfield *left, const struct bitfield *c
 
 inline static void eca_247(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+//¬(r∧q)∨p
 }
 
 inline static void eca_248(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
