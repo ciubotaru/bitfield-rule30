@@ -884,7 +884,15 @@ inline static void eca_58(const struct bitfield *left, const struct bitfield *ce
 
 inline static void eca_59(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+	struct bitfield *tmp1 = bfnot(left);
+	struct bitfield *tmp2 = bfand(tmp1, right);
+	struct bitfield *tmp3 = bfnot(center);
+	struct bitfield *tmp4 = bfor(tmp2, tmp3);
+	bfcpy(tmp4, output);
+	bfdel(tmp1);
+	bfdel(tmp2);
+	bfdel(tmp3);
+	bfdel(tmp4);
 }
 
 inline static void eca_60(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
