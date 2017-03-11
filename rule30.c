@@ -1372,7 +1372,14 @@ inline static void eca_98(const struct bitfield *left, const struct bitfield *ce
 
 inline static void eca_99(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+	/* ((NOT 1) OR 3) XOR 2 */
+	struct bitfield *tmp1 = bfnot(left);
+	struct bitfield *tmp2 = bfor(tmp1, right);
+	struct bitfield *tmp3 = bfxor(tmp2, center);
+	bfcpy(tmp3, output);
+	bfdel(tmp1);
+	bfdel(tmp2);
+	bfdel(tmp3);
 }
 
 inline static void eca_100(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
