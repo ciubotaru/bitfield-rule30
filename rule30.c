@@ -992,7 +992,12 @@ inline static void eca_67(const struct bitfield *left, const struct bitfield *ce
 
 inline static void eca_68(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
 {
-
+	/* 2 AND (NOT 3) */
+	struct bitfield *tmp1 = bfnot(right);
+	struct bitfield *tmp2 = bfand(center, tmp1);
+	bfcpy(tmp2, output);
+	bfdel(tmp1);
+	bfdel(tmp2);
 }
 
 inline static void eca_69(const struct bitfield *left, const struct bitfield *center, const struct bitfield *right, struct bitfield *output)
